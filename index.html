@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felipe faz 44! 🍺</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@400;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Oswald', sans-serif;
+            background: #2c1a0e;
+            background-image:
+                radial-gradient(ellipse at top, #3d2410 0%, #1a0e06 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f5f0e8;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            border-radius: 4px;
+            padding: 40px;
+            box-shadow: 0 10px 60px rgba(0,0,0,0.8), inset 0 0 80px rgba(139,90,43,0.1);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #8b5a2b;
+        }
+
+        /* Manchas de cerveja decorativas */
+        .container::before {
+            content: '';
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 12px solid rgba(139,90,43,0.12);
+            top: -40px;
+            right: -40px;
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 8px solid rgba(139,90,43,0.08);
+            bottom: 60px;
+            left: -30px;
+        }
+
+        .container.admin-wide { max-width: 1200px; }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 30px; position: relative; }
+
+        .beer-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+            display: block;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .convite-label {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.85em;
+            letter-spacing: 4px;
+            color: #8b5a2b;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .convite-label::before,
+        .convite-label::after {
+            content: '★';
+            color: #c0392b;
+            font-size: 0.8em;
+        }
+
+        h1 {
+            font-family: 'Special Elite', cursive;
+            color: #1a0e06;
+            text-align: center;
+            font-size: 3.5em;
+            margin-bottom: 0;
+            line-height: 1.1;
+            text-shadow: 2px 2px 0px rgba(139,90,43,0.3);
+        }
+
+        h1 span {
+            color: #c0392b;
+            font-size: 1.4em;
+            display: block;
+        }
+
+        .subtitle-tag {
+            display: inline-block;
+            background: #c0392b;
+            color: white;
+            font-size: 0.85em;
+            letter-spacing: 3px;
+            padding: 5px 20px;
+            margin: 10px 0 20px;
+            text-transform: uppercase;
+        }
+
+        /* Divisor estilo boteco */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            color: #8b5a2b;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8b5a2b, transparent);
+        }
+
+        /* Info box estilo ticket */
+        .info-box {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border-left: 5px solid #c0392b;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .info-box::before {
+            content: 'CONVITE';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #c0392b;
+            color: white;
+            font-size: 0.7em;
+            letter-spacing: 2px;
+            padding: 2px 10px;
+        }
+
+        .info-box p {
+            margin: 10px 0;
+            color: #2c1a0e;
+            font-size: 1.05em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .info-box strong { color: #c0392b; min-width: 80px; }
+
+        /* Ingredientes da festa */
+        .ingredientes {
+            background: #fffdf5;
+            border: 2px dashed #8b5a2b;
+            border-radius: 4px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .ingredientes h3 {
+            font-family: 'Special Elite', cursive;
+            color: #2c1a0e;
+            font-size: 1em;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .ingrediente-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0;
+            color: #2c1a0e;
+            font-size: 1em;
+            border-bottom: 1px dashed rgba(139,90,43,0.2);
+        }
+
+        .ingrediente-item:last-child { border-bottom: none; }
+
+        .check {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .ingrediente-emoji { font-size: 1.3em; }
+
+        /* Formulário */
+        .form-section {
+            border-top: 2px solid rgba(139,90,43,0.3);
+            padding-top: 25px;
+            margin-top: 5px;
+        }
+
+        .form-section h3 {
+            font-family: 'Special Elite', cursive;
+            color: #2c1a0e;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            letter-spacing: 2px;
+        }
+
+        .form-group { margin-bottom: 18px; }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #2c1a0e;
+            font-weight: bold;
+            font-size: 0.95em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 11px 15px;
+            border: 2px solid #d4b896;
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: 'Oswald', sans-serif;
+            transition: border-color 0.3s;
+            background: white;
+            color: #2c1a0e;
+        }
+
+        input::placeholder { color: #bba88a; }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #c0392b;
+            background: #fffdf5;
+        }
+
+        .radio-group { display: flex; gap: 15px; margin-top: 8px; flex-wrap: wrap; }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            background: white;
+            border: 2px solid #d4b896;
+            border-radius: 4px;
+            padding: 10px 18px;
+            transition: all 0.2s;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .radio-option:hover { border-color: #c0392b; background: #fff5f5; }
+
+        .radio-option input[type="radio"] {
+            width: auto;
+            cursor: pointer;
+            accent-color: #c0392b;
+        }
+
+        .radio-option label {
+            margin: 0;
+            color: #2c1a0e;
+            cursor: pointer;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 0.95em;
+        }
+
+        .conditional-fields {
+            display: none;
+            margin-top: 18px;
+            padding: 20px;
+            background: #fffdf5;
+            border-radius: 4px;
+            border: 2px dashed #d4b896;
+        }
+
+        .conditional-fields.show { display: block; }
+
+        .person-entry {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            border: 1px solid #d4b896;
+        }
+
+        .person-entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #8b5a2b;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .remove-btn {
+            background: #c0392b;
+            color: white;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .remove-btn:hover { background: #a93226; }
+
+        .add-btn {
+            background: transparent;
+            color: #8b5a2b;
+            border: 2px dashed #8b5a2b;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 8px;
+            width: 100%;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .add-btn:hover { background: rgba(139,90,43,0.08); }
+
+        .submit-btn {
+            background: #c0392b;
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 20px;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 3px 3px 0px #8b1a0e;
+            transition: all 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #a93226;
+            transform: translateY(-1px);
+            box-shadow: 4px 4px 0px #8b1a0e;
+        }
+
+        .submit-btn:disabled {
+            background: #bbb;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Mensagens */
+        .message {
+            padding: 18px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.05em;
+            line-height: 1.6;
+            font-family: 'Special Elite', cursive;
+        }
+
+        .message.success {
+            background: #eafaf1;
+            color: #1e8449;
+            border: 2px solid #27ae60;
+        }
+
+        .message.info {
+            background: #eaf3fb;
+            color: #1a5276;
+            border: 2px solid #2980b9;
+        }
+
+        .message.warning {
+            background: #fef9e7;
+            color: #7d6608;
+            border: 2px solid #f1c40f;
+        }
+
+        .message a { color: #c0392b !important; font-weight: bold; }
+
+        /* Admin link invisível */
+        .admin-link {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(139,90,43,0.2);
+        }
+
+        .admin-link a {
+            color: transparent;
+            text-decoration: none;
+            user-select: none;
+        }
+
+        .admin-link a:hover { color: rgba(139,90,43,0.2); }
+
+        .loading { text-align: center; color: #8b5a2b; font-size: 1.1em; padding: 20px; }
+
+        /* Admin */
+        .admin-container { display: none; }
+        .admin-container.show { display: block; }
+        .login-form { max-width: 400px; margin: 0 auto; }
+
+        .rsvp-list { margin-top: 30px; }
+
+        .rsvp-item {
+            background: #fffdf5;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            border-left: 4px solid #c0392b;
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+        }
+
+        .rsvp-item h3 { color: #2c1a0e; margin-bottom: 10px; font-family: 'Special Elite', cursive; }
+        .rsvp-item p { margin: 6px 0; color: #5d4037; font-size: 0.95em; }
+
+        .rsvp-status {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 2px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .rsvp-status.confirmed { background: #27ae60; color: white; }
+        .rsvp-status.declined { background: #c0392b; color: white; }
+
+        .logout-btn {
+            background: #5d4037;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .logout-btn:hover { background: #4e342e; }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            border-top: 4px solid #c0392b;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stat-number { font-size: 2.5em; font-weight: bold; color: #c0392b; font-family: 'Special Elite', cursive; }
+        .stat-label { color: #8b5a2b; margin-top: 5px; font-size: 0.85em; letter-spacing: 1px; text-transform: uppercase; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0 20px;
+            background: white;
+            font-size: 0.93em;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #f0e6d8; }
+
+        th {
+            background: #2c1a0e;
+            color: #f5f0e8;
+            font-weight: bold;
+            white-space: nowrap;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }
+
+        tr:hover { background: #fffdf5; }
+        td { color: #2c1a0e; }
+
+        .delete-btn {
+            background: #c0392b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .delete-btn:hover { background: #a93226; }
+
+        .table-section { margin-top: 30px; }
+        .table-section h2 { color: #2c1a0e; margin-bottom: 15px; font-family: 'Special Elite', cursive; font-size: 1.3em; }
+
+        .copy-btn {
+            background: #8b5a2b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover { background: #7a4f26; }
+
+        .age-filter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #2c1a0e;
+            flex-wrap: wrap;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .age-filter select { width: auto; padding: 8px 12px; text-transform: none; letter-spacing: 0; }
+
+        @media screen and (max-width: 768px) {
+            body { padding: 10px; }
+            .container { padding: 25px 20px; }
+            h1 { font-size: 2.5em; }
+            h1 span { font-size: 1.3em; }
+            .stats { grid-template-columns: 1fr 1fr; }
+            table { font-size: 0.8em; }
+            th, td { padding: 8px 6px; }
+            .table-section { overflow-x: auto; }
+            .radio-group { flex-direction: column; gap: 10px; }
+        }
+
+        @media screen and (min-width: 769px) {
+            .rsvp-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Página Pública -->
+<div class="container" id="publicContainer">
+    <div class="header">
+        <span class="beer-icon">🍺</span>
+        <div class="convite-label">Convite</div>
+        <h1>Felipe<br>faz <span>44</span></h1>
+        <div class="subtitle-tag">Aniversário</div>
+    </div>
+
+    <div id="statusMessage"></div>
+
+    <div class="info-box">
+        <p><strong>📅 Data:</strong> Sábado, 3 de Outubro de 2026</p>
+        <p><strong>🕒 Horário:</strong> A partir das 15h30 — sem hora pra acabar!</p>
+        <p><strong>📍 Local:</strong> Boteco — 5414 av. Gatineau</p>
+    </div>
+
+    <div class="ingredientes">
+        <h3>🧾 Ingredientes da festa:</h3>
+        <div class="ingrediente-item">
+            <span class="check">☑</span>
+            <span class="ingrediente-emoji">👫</span>
+            <span>Amigos</span>
+        </div>
+        <div class="ingrediente-item">
+            <span class="check">☑</span>
+            <span class="ingrediente-emoji">😂</span>
+            <span>Risadas</span>
+        </div>
+        <div class="ingrediente-item">
+            <span class="check">☑</span>
+            <span class="ingrediente-emoji">🥟</span>
+            <span>Pastel</span>
+        </div>
+        <div class="ingrediente-item">
+            <span class="check">☑</span>
+            <span class="ingrediente-emoji">🍗</span>
+            <span>Coxinha</span>
+        </div>
+        <div class="ingrediente-item">
+            <span class="check">☑</span>
+            <span class="ingrediente-emoji">🍺</span>
+            <span>Cerveja gelada</span>
+        </div>
+        <div class="ingrediente-item">
+            <span class="check">☑</span>
+            <span class="ingrediente-emoji">💛</span>
+            <span>Memórias — isso é que fica!</span>
+        </div>
+    </div>
+
+    <div class="divider">🍺</div>
+
+    <div class="form-section">
+        <h3>📋 Confirme sua presença</h3>
+        <form id="rsvpForm">
+            <div class="form-group">
+                <label for="name">Seu nome *</label>
+                <input type="text" id="name" required placeholder="Nome completo">
+            </div>
+
+            <div class="form-group">
+                <label>Você vai? *</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="attendYes" name="attending" value="yes" required>
+                        <label for="attendYes">🍺 Sim, vou estar lá!</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="attendNo" name="attending" value="no" required>
+                        <label for="attendNo">😢 Não poderei ir</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="conditionalFields" class="conditional-fields">
+                <div class="form-group">
+                    <label for="phone">Telefone para contato *</label>
+                    <div style="display:flex; gap:10px;">
+                        <select id="phoneCountry" style="width:auto; min-width:175px; flex-shrink:0;">
+                            <option value="+1">🇨🇦 Canadá +1</option>
+                            <option value="+55">🇧🇷 Brasil +55</option>
+                        </select>
+                        <input type="tel" id="phone" placeholder="(514) 000-0000" style="flex:1;" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Outros Adultos/Adolescentes (13+)?</label>
+                    <div id="adultsContainer"></div>
+                    <button type="button" class="add-btn" onclick="addAdult()">+ Adulto</button>
+                </div>
+
+                <div class="form-group">
+                    <label>Crianças até 12 anos?</label>
+                    <div id="childrenContainer"></div>
+                    <button type="button" class="add-btn" onclick="addChild()">+ Criança</button>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">🍺 Confirmar Presença!</button>
+        </form>
+    </div>
+
+    <div class="admin-link">
+        <a href="#admin" onclick="showAdmin(); return false;">.</a>
+    </div>
+</div>
+
+<!-- Admin -->
+<div class="container admin-container admin-wide" id="adminContainer">
+    <h1 style="font-family:'Special Elite',cursive; color:#2c1a0e; margin-bottom:25px;">🍺 Painel Admin</h1>
+
+    <div id="loginForm" class="login-form">
+        <div class="form-group">
+            <label for="adminPassword">Senha de acesso:</label>
+            <input type="password" id="adminPassword" placeholder="Digite a senha">
+        </div>
+        <button class="submit-btn" onclick="adminLogin()">Entrar</button>
+        <div class="admin-link" style="display:block; margin-top:20px;">
+            <a href="#" onclick="showPublic(); return false;" style="color:#8b5a2b !important; font-size:0.9em;">← Voltar para RSVP</a>
+        </div>
+    </div>
+
+    <div id="adminPanel" style="display:none;">
+        <button class="logout-btn" onclick="adminLogout()">Sair</button>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalConfirmed">0</div>
+                <div class="stat-label">Confirmados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalDeclined">0</div>
+                <div class="stat-label">Não virão</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalGuests">0</div>
+                <div class="stat-label">Total de Pessoas</div>
+            </div>
+        </div>
+
+        <div class="table-section">
+            <h2>📋 Lista de Presença</h2>
+
+            <div class="age-filter">
+                <label style="margin:0;">Idade mínima para contabilizar:</label>
+                <select id="minAge" onchange="renderTable()">
+                    <option value="0">Todas</option>
+                    <option value="1">1 ano+</option>
+                    <option value="2">2 anos+</option>
+                    <option value="3">3 anos+</option>
+                    <option value="4">4 anos+</option>
+                    <option value="5" selected>5 anos+</option>
+                    <option value="6">6 anos+</option>
+                </select>
+            </div>
+
+            <button class="copy-btn" onclick="copyToClipboard()">📋 Copiar para Excel</button>
+
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Responsável</th>
+                            <th>Telefone</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rsvpTableBody">
+                        <tr><td colspan="6" style="text-align:center;">Carregando...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="rsvp-list" id="rsvpList">
+            <div class="loading">Carregando confirmações...</div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+    const CONFIG = {
+        eventDate: '2026-10-03',
+        closeDate: '2026-09-27T23:59:00',
+        whatsappNumber: '15146599937',
+        adminPasswordHash: 'fe64888257b171ca96f1e41b1a09e1c948ac51d175f62414b6f230d9b817ce4c'
+    };
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCUT2lzMskGWm8AvvzsbNWOo4Sr_z77zF4",
+        authDomain: "magamelo-dbb39.firebaseapp.com",
+        projectId: "magamelo-dbb39",
+        storageBucket: "magamelo-dbb39.firebasestorage.app",
+        messagingSenderId: "524846619592",
+        appId: "1:524846619592:web:f4432e8427599219e2fefd"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let adultsCount = 0, childrenCount = 0, allRsvps = [];
+
+    function checkEventStatus() {
+        const now = new Date();
+        const eventDate = new Date(CONFIG.eventDate);
+        const closeDate = new Date(CONFIG.closeDate);
+
+        const statusDiv = document.getElementById('statusMessage');
+        const form = document.getElementById('rsvpForm');
+
+        if (now > eventDate) {
+            statusDiv.className = 'message info';
+            statusDiv.innerHTML = '🍺 A festa já aconteceu! Obrigado a todos que compareceram! Saúde!';
+            form.style.display = 'none';
+            return false;
+        } else if (now > closeDate) {
+            statusDiv.className = 'message warning';
+            statusDiv.innerHTML = `⏰ As confirmações estão encerradas.<br>Para mais informações, entre em contato pelo WhatsApp:<br><a href="https://wa.me/${CONFIG.whatsappNumber}">Clique aqui para contato</a>`;
+            form.style.display = 'none';
+            return false;
+        }
+        return true;
+    }
+
+    document.querySelectorAll('input[name="attending"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const fields = document.getElementById('conditionalFields');
+            const phone = document.getElementById('phone');
+            if (this.value === 'yes') { fields.classList.add('show'); phone.required = true; }
+            else { fields.classList.remove('show'); phone.required = false; }
+        });
+    });
+
+    window.addAdult = function() {
+        adultsCount++;
+        const div = document.createElement('div');
+        div.className = 'person-entry';
+        div.innerHTML = `
+            <div class="person-entry-header">
+                <strong>Adulto ${adultsCount}</strong>
+                <button type="button" class="remove-btn" onclick="this.parentElement.parentElement.remove()">Remover</button>
+            </div>
+            <input type="text" placeholder="Nome completo" class="adult-name" required>
+        `;
+        document.getElementById('adultsContainer').appendChild(div);
+    };
+
+    window.addChild = function() {
+        childrenCount++;
+        const div = document.createElement('div');
+        div.className = 'person-entry';
+        div.innerHTML = `
+            <div class="person-entry-header">
+                <strong>Criança ${childrenCount}</strong>
+                <button type="button" class="remove-btn" onclick="this.parentElement.parentElement.remove()">Remover</button>
+            </div>
+            <input type="text" placeholder="Nome completo" class="child-name" style="margin-bottom:10px;" required>
+            <input type="number" placeholder="Idade" class="child-age" min="0" max="12" required>
+        `;
+        document.getElementById('childrenContainer').appendChild(div);
+    };
+
+    document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!checkEventStatus()) return;
+
+        const submitBtn = this.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        const attending = document.querySelector('input[name="attending"]:checked').value === 'yes';
+        const data = { name: document.getElementById('name').value, attending, timestamp: new Date().toISOString() };
+
+        if (attending) {
+            const country = document.getElementById('phoneCountry').value;
+            data.phone = country + ' ' + document.getElementById('phone').value;
+            data.additionalAdults = Array.from(document.querySelectorAll('.adult-name')).map(i => i.value).filter(n => n.trim());
+            data.additionalChildren = Array.from(document.querySelectorAll('.person-entry'))
+                .filter(e => e.querySelector('.child-name'))
+                .map(e => ({ name: e.querySelector('.child-name').value, age: e.querySelector('.child-age').value }))
+                .filter(c => c.name.trim());
+        }
+
+        try {
+            await addDoc(collection(db, 'felipefaz44'), data);
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.className = 'message success';
+            statusDiv.innerHTML = attending
+                ? '🍺 Confirmação recebida! Te espero lá — vai ser incrível! 🥟🎉'
+                : '😢 Que pena que não poderá vir. Obrigado por avisar!';
+            this.reset();
+            document.getElementById('conditionalFields').classList.remove('show');
+            adultsCount = 0; childrenCount = 0;
+            document.getElementById('adultsContainer').innerHTML = '';
+            document.getElementById('childrenContainer').innerHTML = '';
+            this.style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+            alert('Erro ao enviar confirmação. Por favor, tente novamente.');
+            console.error(err);
+        }
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = '🍺 Confirmar Presença!';
+    });
+
+    window.showAdmin = function() {
+        document.getElementById('publicContainer').style.display = 'none';
+        document.getElementById('adminContainer').classList.add('show');
+    };
+
+    window.showPublic = function() {
+        document.getElementById('publicContainer').style.display = 'block';
+        document.getElementById('adminContainer').classList.remove('show');
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('adminPanel').style.display = 'none';
+    };
+
+    window.adminLogin = async function() {
+        const password = document.getElementById('adminPassword').value;
+        const msgBuffer = new TextEncoder().encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        if (hashHex === CONFIG.adminPasswordHash) {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            loadRSVPs();
+        } else { alert('Senha incorreta!'); }
+    };
+
+    window.adminLogout = function() { showPublic(); document.getElementById('adminPassword').value = ''; };
+
+    async function loadRSVPs() {
+        const listDiv = document.getElementById('rsvpList');
+        const tableBody = document.getElementById('rsvpTableBody');
+        listDiv.innerHTML = '<div class="loading">Carregando...</div>';
+        tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Carregando...</td></tr>';
+
+        try {
+            const snap = await getDocs(query(collection(db, 'felipefaz44'), orderBy('timestamp', 'desc')));
+            allRsvps = [];
+            snap.forEach(d => allRsvps.push({ id: d.id, ...d.data() }));
+
+            if (allRsvps.length === 0) {
+                listDiv.innerHTML = '<div class="message info">Nenhuma confirmação ainda.</div>';
+                tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Nenhuma confirmação ainda.</td></tr>';
+                updateStats([], [], 0);
+                return;
+            }
+            renderTable();
+            renderCards(listDiv);
+        } catch (err) {
+            listDiv.innerHTML = '<div class="message warning">Erro ao carregar confirmações.</div>';
+            console.error(err);
+        }
+    }
+
+    window.renderTable = function() {
+        const minAge = parseInt(document.getElementById('minAge').value);
+        const tableBody = document.getElementById('rsvpTableBody');
+        tableBody.innerHTML = '';
+        let totalGuests = 0;
+
+        allRsvps.forEach(rsvp => {
+            if (!rsvp.attending) {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td><strong>${rsvp.name}</strong></td><td>-</td><td>-</td><td>-</td><td>❌ Não vai</td><td><button class="delete-btn" onclick="deleteRSVP('${rsvp.id}','${rsvp.name.replace(/'/g,"\\'")}')">🗑️</button></td>`;
+                tableBody.appendChild(row);
+                return;
+            }
+            const row = document.createElement('tr');
+            row.innerHTML = `<td><strong>${rsvp.name}</strong></td><td>-</td><td>-</td><td>${rsvp.phone||'-'}</td><td>✅ Vai</td><td><button class="delete-btn" onclick="deleteRSVP('${rsvp.id}','${rsvp.name.replace(/'/g,"\\'")}')">🗑️</button></td>`;
+            tableBody.appendChild(row);
+            totalGuests++;
+
+            (rsvp.additionalAdults||[]).forEach(adult => {
+                const r = document.createElement('tr');
+                r.innerHTML = `<td>${adult}</td><td>-</td><td>${rsvp.name}</td><td>-</td><td>✅ Vai</td><td>-</td>`;
+                tableBody.appendChild(r);
+                totalGuests++;
+            });
+
+            (rsvp.additionalChildren||[]).forEach(child => {
+                const age = parseInt(child.age);
+                const counts = age >= minAge;
+                const r = document.createElement('tr');
+                r.style.opacity = counts ? '1' : '0.5';
+                r.innerHTML = `<td>${child.name}${!counts?' <small style="color:#aaa">(não contabilizado)</small>':''}</td><td>${child.age} anos</td><td>${rsvp.name}</td><td>-</td><td>✅ Vai</td><td>-</td>`;
+                tableBody.appendChild(r);
+                if (counts) totalGuests++;
+            });
+        });
+
+        updateStats(allRsvps.filter(r=>r.attending), allRsvps.filter(r=>!r.attending), totalGuests);
+    };
+
+    function renderCards(listDiv) {
+        listDiv.innerHTML = '';
+        const confirmed = allRsvps.filter(r => r.attending);
+        const declined = allRsvps.filter(r => !r.attending);
+
+        if (confirmed.length > 0) {
+            const s = document.createElement('div');
+            s.innerHTML = '<h2 style="color:#2c1a0e; margin-bottom:15px; font-family:Special Elite,cursive;">✅ Confirmados</h2>';
+            confirmed.forEach(r => s.appendChild(createCard(r, true)));
+            listDiv.appendChild(s);
+        }
+        if (declined.length > 0) {
+            const s = document.createElement('div');
+            s.innerHTML = '<h2 style="color:#2c1a0e; margin:30px 0 15px; font-family:Special Elite,cursive;">❌ Não virão</h2>';
+            declined.forEach(r => s.appendChild(createCard(r, false)));
+            listDiv.appendChild(s);
+        }
+    }
+
+    window.copyToClipboard = function() {
+        const minAge = parseInt(document.getElementById('minAge').value);
+        let tsv = 'Nome\tIdade\tResponsável\tTelefone\tStatus\n';
+        allRsvps.forEach(rsvp => {
+            if (!rsvp.attending) { tsv += `${rsvp.name}\t-\t-\t-\tNão vai\n`; return; }
+            tsv += `${rsvp.name}\t-\t-\t${rsvp.phone||'-'}\tVai\n`;
+            (rsvp.additionalAdults||[]).forEach(a => { tsv += `${a}\t-\t${rsvp.name}\t-\tVai\n`; });
+            (rsvp.additionalChildren||[]).forEach(c => {
+                const counts = parseInt(c.age) >= minAge;
+                tsv += `${c.name}\t${c.age} anos\t${rsvp.name}\t-\t${counts?'Vai':'Vai (não contabilizado)'}\n`;
+            });
+        });
+        navigator.clipboard.writeText(tsv).then(() => alert('✅ Dados copiados! Cole no Excel com Ctrl+V'));
+    };
+
+    window.deleteRSVP = async function(rsvpId, name) {
+        if (!confirm(`Tem certeza que deseja excluir a confirmação de "${name}"?\n\nEsta ação não pode ser desfeita.`)) return;
+        try {
+            await deleteDoc(doc(db, 'felipefaz44', rsvpId));
+            alert('Confirmação excluída com sucesso!');
+            loadRSVPs();
+        } catch (err) { alert('Erro ao excluir. Tente novamente.'); console.error(err); }
+    };
+
+    function createCard(rsvp, attending) {
+        const div = document.createElement('div');
+        div.className = 'rsvp-item';
+        let html = `<span class="rsvp-status ${attending?'confirmed':'declined'}">${attending?'✅ Confirmado':'❌ Não virá'}</span><h3>${rsvp.name}</h3><p><strong>Data:</strong> ${new Date(rsvp.timestamp).toLocaleString('pt-BR')}</p>`;
+        if (attending) {
+            html += `<p><strong>Telefone:</strong> ${rsvp.phone}</p>`;
+            let total = 1;
+            if (rsvp.additionalAdults?.length) { total += rsvp.additionalAdults.length; html += `<p><strong>Adultos (${rsvp.additionalAdults.length}):</strong> ${rsvp.additionalAdults.join(', ')}</p>`; }
+            if (rsvp.additionalChildren?.length) { total += rsvp.additionalChildren.length; html += `<p><strong>Crianças (${rsvp.additionalChildren.length}):</strong> ${rsvp.additionalChildren.map(c=>`${c.name} (${c.age} anos)`).join(', ')}</p>`; }
+            html += `<p><strong>Total:</strong> ${total} pessoa(s)</p>`;
+        }
+        div.innerHTML = html;
+        return div;
+    }
+
+    function updateStats(confirmed, declined, totalGuests) {
+        document.getElementById('totalConfirmed').textContent = confirmed.length;
+        document.getElementById('totalDeclined').textContent = declined.length;
+        document.getElementById('totalGuests').textContent = totalGuests;
+    }
+
+    checkEventStatus();
+    if (window.location.hash === '#admin') showAdmin();
+</script>
+</body>
+</html>
