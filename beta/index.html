@@ -9,368 +9,141 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=League+Spartan:wght@600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap');
+        :root { --night:#12251f; --forest:#1b3a30; --lime:#d7e857; --beer:#f4aa25; --orange:#e05a35; --cream:#f6f0e3; --paper:#fffdf7; --ink:#1d2823; --muted:#6f776f; --line:#dfe2d7; }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        html { scroll-behavior:smooth; }
+        body { min-height:100vh; color:var(--ink); background:#e9e8df; font-family:'Manrope',sans-serif; }
+        button,input,select { font:inherit; }
+        button { cursor:pointer; }
+        .container { width:100%; min-height:100vh; background:var(--paper); }
+        .invite-shell { display:grid; grid-template-columns:minmax(420px, 46%) 1fr; min-height:100vh; }
+        .poster { position:sticky; top:0; height:100vh; overflow:hidden; color:var(--cream); background:var(--night); isolation:isolate; }
+        .poster::before { content:''; position:absolute; inset:0; z-index:-2; opacity:.18; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E"); }
+        .poster::after { content:''; position:absolute; width:38vw; height:38vw; min-width:430px; min-height:430px; top:21%; left:50%; z-index:-1; translate:-50% -10%; border:1px solid rgba(255,255,255,.1); border-radius:50%; box-shadow:0 0 0 45px rgba(255,255,255,.025),0 0 0 120px rgba(255,255,255,.018); }
+        .poster-inner { position:relative; height:100%; padding:clamp(28px,4vw,60px); display:flex; flex-direction:column; justify-content:space-between; }
+        .brand-row { display:flex; align-items:center; justify-content:space-between; }
+        .brand { display:flex; align-items:center; gap:10px; font:600 .72rem 'DM Sans'; letter-spacing:.18em; text-transform:uppercase; }
+        .brand-dot { width:9px; height:9px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 5px rgba(215,232,87,.12); }
+        .edition { color:#aab8af; font-size:.66rem; letter-spacing:.15em; text-transform:uppercase; }
+        .poster-copy { position:relative; z-index:2; }
+        .poster-kicker { margin-bottom:18px; color:var(--lime); font:600 .78rem 'DM Sans'; letter-spacing:.16em; text-transform:uppercase; }
+        .poster h1 { max-width:650px; font:700 clamp(5.3rem,10.5vw,10rem)/.75 'Oswald',sans-serif; letter-spacing:-.065em; text-transform:uppercase; }
+        .poster h1 .faz { display:inline-block; margin-left:.1em; color:var(--beer); font-size:.42em; letter-spacing:-.02em; vertical-align:.56em; transform:rotate(-6deg); }
+        .poster h1 .age { display:block; color:transparent; -webkit-text-stroke:2px var(--cream); }
+        .poster-sub { max-width:450px; margin-top:26px; color:#b9c4bd; font-size:.93rem; line-height:1.7; }
+        .poster-footer { display:flex; align-items:end; justify-content:space-between; gap:20px; }
+        .date-stamp { display:flex; gap:14px; align-items:center; }
+        .date-number { color:var(--lime); font:700 3.8rem/.8 'Oswald'; }
+        .date-copy { color:#c7cec9; font-size:.72rem; line-height:1.5; letter-spacing:.08em; text-transform:uppercase; }
+        .scroll-cue { color:#89988e; font-size:.68rem; letter-spacing:.14em; writing-mode:vertical-rl; text-transform:uppercase; }
+        .hero-art { position:absolute; right:-5%; top:18%; width:min(33vw,500px); opacity:.96; transform:rotate(7deg); filter:drop-shadow(0 25px 30px rgba(0,0,0,.28)); }
+        .hero-art .foam { animation:float 4s ease-in-out infinite; transform-origin:center; }
+        @keyframes float { 50% { transform:translateY(-8px); } }
 
-        :root {
-            --ink: #241b16;
-            --muted: #75675d;
-            --paper: #fffaf0;
-            --cream: #f7eddb;
-            --amber: #e5a323;
-            --amber-dark: #b96c12;
-            --terracotta: #b8492e;
-            --green: #284f40;
-            --line: rgba(61, 43, 31, .14);
-            --shadow: 0 28px 80px rgba(24, 14, 8, .24);
-        }
+        .details { padding:clamp(42px,7vw,95px) clamp(26px,7vw,100px); background:var(--paper); }
+        .details-inner { max-width:690px; margin:auto; }
+        .section-tag { display:flex; align-items:center; gap:11px; margin-bottom:22px; color:var(--orange); font:700 .69rem 'DM Sans'; letter-spacing:.16em; text-transform:uppercase; }
+        .section-tag::before { content:''; width:28px; height:2px; background:currentColor; }
+        .intro h2 { max-width:650px; font:600 clamp(2.5rem,5vw,4.7rem)/1 'Oswald'; letter-spacing:-.035em; text-transform:uppercase; }
+        .intro h2 em { color:var(--orange); font-style:normal; }
+        .intro-text { max-width:580px; margin:24px 0 40px; color:var(--muted); font-size:1rem; line-height:1.8; }
+        .event-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; overflow:hidden; margin-bottom:56px; border:1px solid var(--line); border-radius:22px; background:var(--line); }
+        .event-card { padding:25px; background:var(--paper); }
+        .event-card.wide { grid-column:1/-1; display:flex; align-items:center; gap:20px; }
+        .event-icon { width:44px; height:44px; display:grid; place-items:center; border-radius:50%; color:var(--night); background:var(--lime); font-size:1.1rem; }
+        .event-card small { display:block; margin:15px 0 5px; color:#949a92; font:700 .65rem 'DM Sans'; letter-spacing:.14em; text-transform:uppercase; }
+        .event-card.wide small { margin-top:0; }
+        .event-card strong { font:600 1.3rem 'Oswald'; text-transform:uppercase; }
+        .event-card p { margin-top:4px; color:var(--muted); font-size:.78rem; }
+        .menu-band { position:relative; margin:0 0 62px; padding:34px; overflow:hidden; border-radius:24px; color:var(--cream); background:var(--orange); }
+        .menu-band::after { content:'44'; position:absolute; right:-8px; bottom:-50px; color:rgba(255,255,255,.09); font:700 10rem 'Oswald'; }
+        .menu-title { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:end; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,.25); }
+        .menu-title h3 { font:600 1.7rem 'Oswald'; text-transform:uppercase; }
+        .menu-title span { font-size:.7rem; opacity:.75; letter-spacing:.1em; text-transform:uppercase; }
+        .menu-list { position:relative; z-index:1; display:grid; grid-template-columns:repeat(2,1fr); gap:0 28px; margin-top:16px; }
+        .menu-row { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px dashed rgba(255,255,255,.22); font-size:.82rem; }
+        .menu-row b { font-weight:600; } .menu-row span { opacity:.75; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            min-height: 100vh;
-            padding: 36px 18px;
-            color: var(--ink);
-            font-family: 'DM Sans', sans-serif;
-            background:
-                radial-gradient(circle at 15% 10%, rgba(229,163,35,.18), transparent 28%),
-                radial-gradient(circle at 85% 90%, rgba(184,73,46,.16), transparent 30%),
-                #17362c;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: .18;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
-        }
+        .form-head { margin-bottom:30px; }
+        .form-head h2 { font:600 clamp(2.1rem,4vw,3.5rem)/1.05 'Oswald'; letter-spacing:-.025em; text-transform:uppercase; }
+        .form-head p { margin-top:12px; color:var(--muted); line-height:1.6; }
+        .form-group { margin-bottom:20px; }
+        label { display:block; margin-bottom:8px; color:#4e5852; font:700 .67rem 'DM Sans'; letter-spacing:.11em; text-transform:uppercase; }
+        input,select,textarea { width:100%; padding:15px 16px; border:1px solid var(--line); border-radius:12px; color:var(--ink); background:white; outline:none; transition:.2s; }
+        input:focus,select:focus,textarea:focus { border-color:var(--forest); box-shadow:0 0 0 4px rgba(27,58,48,.08); }
+        input::placeholder { color:#afb3ae; }
+        .radio-group { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+        .radio-option { display:flex; align-items:center; gap:10px; padding:15px; border:1px solid var(--line); border-radius:12px; background:white; transition:.2s; }
+        .radio-option:hover,.radio-option:has(input:checked) { border-color:var(--forest); background:#f2f5e5; }
+        .radio-option input { width:auto; accent-color:var(--forest); }
+        .radio-option label { margin:0; cursor:pointer; color:var(--ink); font-size:.78rem; letter-spacing:0; text-transform:none; }
+        .conditional-fields { display:none; margin:22px 0; padding:22px; border:1px solid var(--line); border-radius:16px; background:#f4f3ec; }
+        .conditional-fields.show { display:block; animation:reveal .25s ease; }
+        @keyframes reveal { from { opacity:0; transform:translateY(-7px); } }
+        .person-entry { margin:10px 0; padding:14px; border:1px solid var(--line); border-radius:12px; background:white; }
+        .person-entry-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; color:var(--muted); font-size:.7rem; text-transform:uppercase; }
+        .remove-btn,.delete-btn { padding:6px 10px; border:0; border-radius:7px; color:white; background:var(--orange); }
+        .add-btn { width:100%; padding:11px; border:1px dashed #abb0a8; border-radius:10px; color:#59615c; background:transparent; font-size:.78rem; font-weight:700; }
+        .submit-btn { width:100%; margin-top:8px; padding:17px; border:0; border-radius:12px; color:white; background:var(--night); font:700 .77rem 'DM Sans'; letter-spacing:.12em; text-transform:uppercase; box-shadow:0 12px 25px rgba(18,37,31,.15); transition:.2s; }
+        .submit-btn:hover { translate:0 -2px; background:var(--forest); box-shadow:0 16px 30px rgba(18,37,31,.2); }
+        .submit-btn:disabled { opacity:.5; translate:0; }
+        .fine-print { margin-top:13px; color:#999f99; font-size:.71rem; text-align:center; }
+        .message { margin-bottom:25px; padding:17px; border-radius:12px; text-align:center; font-size:.85rem; line-height:1.5; }
+        .message.success { color:#17623e; background:#e5f5eb; border:1px solid #a9d8ba; }.message.info{color:#245070;background:#e9f4fa;border:1px solid #b9d8e9}.message.warning{color:#77550a;background:#fff4cf;border:1px solid #ecd47c}.message a{color:var(--orange);font-weight:700}
+        .admin-link { height:1px;text-align:center }.admin-link a{color:transparent;text-decoration:none;user-select:none}
 
-        .container {
-            position: relative;
-            max-width: 720px;
-            margin: 0 auto;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,.45);
-            border-radius: 28px;
-            background: var(--paper);
-            box-shadow: var(--shadow);
-        }
-        .container.admin-wide { max-width: 1200px; padding: 42px; }
-
-        .hero {
-            position: relative;
-            min-height: 440px;
-            padding: 42px 48px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            color: #fffaf0;
-            isolation: isolate;
-            background:
-                linear-gradient(125deg, rgba(22,48,39,.98), rgba(34,75,59,.94)),
-                var(--green);
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            width: 330px;
-            height: 330px;
-            right: -92px;
-            top: 60px;
-            border: 2px solid rgba(255,255,255,.10);
-            border-radius: 50%;
-            box-shadow: 0 0 0 26px rgba(255,255,255,.035), 0 0 0 70px rgba(255,255,255,.025);
-        }
-        .hero::after {
-            content: '44';
-            position: absolute;
-            z-index: -1;
-            right: 20px;
-            bottom: -60px;
-            color: rgba(255,255,255,.045);
-            font: 800 260px/1 'League Spartan', sans-serif;
-            letter-spacing: -20px;
-        }
-        .hero-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            color: #f5d998;
-            font-size: .72rem;
-            font-weight: 700;
-            letter-spacing: .22em;
-            text-transform: uppercase;
-        }
-        .eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--amber); }
-        .beer-mark {
-            width: 52px;
-            height: 52px;
-            display: grid;
-            place-items: center;
-            border: 1px solid rgba(255,255,255,.22);
-            border-radius: 50%;
-            background: rgba(255,255,255,.07);
-            font-size: 1.55rem;
-            transform: rotate(7deg);
-        }
-        .hero-copy { max-width: 500px; margin: 54px 0 42px; }
-        .hero-kicker { margin-bottom: 8px; font-size: 1.1rem; color: #e8ddc8; }
-        .hero h1 {
-            max-width: 540px;
-            color: #fffaf0;
-            font: 800 clamp(4.2rem, 14vw, 7.8rem)/.76 'League Spartan', sans-serif;
-            letter-spacing: -.075em;
-            text-align: left;
-        }
-        .hero h1 span { color: var(--amber); }
-        .hero-note { margin-top: 25px; max-width: 430px; color: #d7d0c5; font-size: 1rem; line-height: 1.65; }
-        .hero-pills { display: flex; flex-wrap: wrap; gap: 9px; }
-        .hero-pill {
-            padding: 9px 14px;
-            border: 1px solid rgba(255,255,255,.18);
-            border-radius: 100px;
-            color: #f6ead4;
-            background: rgba(255,255,255,.06);
-            font-size: .78rem;
-            font-weight: 600;
-        }
-
-        .content { padding: 42px 48px 50px; }
-        .section-label {
-            margin-bottom: 18px;
-            color: var(--terracotta);
-            font-size: .72rem;
-            font-weight: 800;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-        }
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 36px; }
-        .info-card {
-            position: relative;
-            min-height: 128px;
-            padding: 20px;
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            background: rgba(255,255,255,.64);
-        }
-        .info-card.location { grid-column: 1 / -1; min-height: auto; display: flex; align-items: center; gap: 18px; }
-        .info-icon {
-            width: 38px;
-            height: 38px;
-            display: grid;
-            place-items: center;
-            flex: 0 0 auto;
-            border-radius: 12px;
-            background: #f5e5c2;
-            font-size: 1.05rem;
-        }
-        .info-card small { display: block; margin: 13px 0 4px; color: var(--muted); font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-        .info-card.location small { margin-top: 0; }
-        .info-card strong { display: block; font-family: 'League Spartan', sans-serif; font-size: 1.18rem; line-height: 1.25; }
-        .info-card p { color: var(--muted); font-size: .86rem; margin-top: 3px; }
-
-        .menu-card {
-            position: relative;
-            margin-bottom: 38px;
-            padding: 28px;
-            overflow: hidden;
-            border-radius: 20px;
-            color: #fff9ec;
-            background: var(--terracotta);
-        }
-        .menu-card::after { content: '✦'; position: absolute; right: -8px; top: -32px; color: rgba(255,255,255,.1); font-size: 8rem; }
-        .menu-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 22px; }
-        .menu-head h2 { font: 700 1.55rem/1 'League Spartan', sans-serif; }
-        .menu-head span { color: #f6d6bd; font-size: .77rem; }
-        .menu-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
-        .menu-item { padding: 13px 10px; border: 1px solid rgba(255,255,255,.2); border-radius: 13px; text-align: center; background: rgba(255,255,255,.06); }
-        .menu-item b { display: block; margin-bottom: 4px; font-size: 1.25rem; }
-        .menu-item span { font-size: .76rem; font-weight: 600; }
-
-        .form-section { padding-top: 8px; }
-        .form-heading { margin-bottom: 26px; }
-        .form-heading h2 { font: 700 2rem/1.05 'League Spartan', sans-serif; letter-spacing: -.03em; }
-        .form-heading p { margin-top: 8px; color: var(--muted); font-size: .9rem; }
-        .form-group { margin-bottom: 19px; }
-        label { display: block; margin-bottom: 8px; color: #48382e; font-size: .73rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-        input, select, textarea {
-            width: 100%; padding: 14px 15px; border: 1px solid #dfd2c0; border-radius: 12px;
-            color: var(--ink); background: #fffefa; font: 500 .95rem 'DM Sans', sans-serif; transition: .2s ease;
-        }
-        input::placeholder { color: #aa9d91; }
-        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--amber-dark); box-shadow: 0 0 0 4px rgba(229,163,35,.12); }
-        .radio-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .radio-option { display: flex; align-items: center; gap: 9px; padding: 13px; cursor: pointer; border: 1px solid #dfd2c0; border-radius: 12px; background: #fffefa; transition: .2s; }
-        .radio-option:hover, .radio-option:has(input:checked) { border-color: var(--amber-dark); background: #fff7e7; }
-        .radio-option input { width: auto; accent-color: var(--terracotta); }
-        .radio-option label { margin: 0; cursor: pointer; color: var(--ink); font-size: .82rem; font-weight: 600; letter-spacing: 0; text-transform: none; }
-        .conditional-fields { display: none; margin: 22px 0; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--cream); }
-        .conditional-fields.show { display: block; animation: reveal .25s ease; }
-        @keyframes reveal { from { opacity: 0; transform: translateY(-5px); } }
-        .person-entry { margin-bottom: 10px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: #fffefa; }
-        .person-entry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; color: var(--muted); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
-        button { font-family: 'DM Sans', sans-serif; }
-        .remove-btn, .delete-btn { padding: 6px 10px; border: 0; border-radius: 8px; cursor: pointer; color: white; background: var(--terracotta); }
-        .add-btn { width: 100%; margin-top: 7px; padding: 11px; cursor: pointer; border: 1px dashed #bba98f; border-radius: 10px; color: #6e5d4e; background: transparent; font-weight: 700; }
-        .submit-btn { width: 100%; margin-top: 10px; padding: 17px 24px; border: 0; border-radius: 13px; cursor: pointer; color: white; background: var(--green); font-size: .91rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; box-shadow: 0 10px 22px rgba(40,79,64,.2); transition: .2s; }
-        .submit-btn:hover { transform: translateY(-2px); background: #1f4235; box-shadow: 0 13px 26px rgba(40,79,64,.25); }
-        .submit-btn:disabled { cursor: not-allowed; opacity: .5; transform: none; }
-        .fine-print { margin-top: 13px; color: #94867b; font-size: .73rem; text-align: center; }
-
-        .message { margin-bottom: 25px; padding: 17px; border-radius: 13px; text-align: center; font-size: .92rem; line-height: 1.55; }
-        .message.success { color: #17623e; background: #e5f5eb; border: 1px solid #a9d8ba; }
-        .message.info { color: #245070; background: #e9f4fa; border: 1px solid #b9d8e9; }
-        .message.warning { color: #77550a; background: #fff4cf; border: 1px solid #ecd47c; }
-        .message a { color: var(--terracotta); font-weight: 700; }
-        .admin-link { height: 1px; text-align: center; }
-        .admin-link a { color: transparent; text-decoration: none; user-select: none; }
-        .admin-link a:hover { color: rgba(0,0,0,.15); }
-
-        /* Administração */
-        .admin-container { display: none; background: var(--paper); }
-        .admin-container.show { display: block; }
-        .admin-container > h1 { margin-bottom: 25px; font: 700 2.5rem 'League Spartan', sans-serif; }
-        .login-form { max-width: 400px; margin: 0 auto; }
-        .logout-btn, .copy-btn { margin-bottom: 20px; padding: 10px 18px; border: 0; border-radius: 9px; cursor: pointer; color: white; background: var(--green); font-weight: 700; }
-        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 30px; }
-        .stat-card { padding: 20px; border: 1px solid var(--line); border-radius: 15px; text-align: center; background: white; }
-        .stat-number { color: var(--terracotta); font: 700 2.3rem 'League Spartan', sans-serif; }
-        .stat-label { color: var(--muted); font-size: .72rem; font-weight: 700; text-transform: uppercase; }
-        .age-filter { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
-        .age-filter label { margin: 0; }
-        .age-filter select { width: auto; padding: 8px 12px; }
-        .table-section { margin-top: 25px; }
-        .table-section h2 { margin-bottom: 15px; font: 700 1.5rem 'League Spartan', sans-serif; }
-        table { width: 100%; margin: 10px 0 25px; border-collapse: collapse; background: white; font-size: .85rem; }
-        th, td { padding: 12px; border-bottom: 1px solid var(--line); text-align: left; }
-        th { color: white; background: var(--green); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
-        .rsvp-list { margin-top: 25px; }
-        .rsvp-item { margin-bottom: 12px; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: white; }
-        .rsvp-item h3 { margin: 8px 0; }
-        .rsvp-item p { margin: 5px 0; color: var(--muted); font-size: .86rem; }
-        .rsvp-status { display: inline-block; padding: 5px 10px; border-radius: 99px; color: white; font-size: .67rem; font-weight: 800; text-transform: uppercase; }
-        .rsvp-status.confirmed { background: #2f7853; } .rsvp-status.declined { background: var(--terracotta); }
-        .loading { padding: 20px; color: var(--muted); text-align: center; }
-
-        @media (min-width: 769px) { .rsvp-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; } }
-        @media (max-width: 600px) {
-            body { padding: 0; background: var(--paper); }
-            .container { border: 0; border-radius: 0; box-shadow: none; }
-            .hero { min-height: 410px; padding: 30px 24px; }
-            .hero-copy { margin: 52px 0 36px; }
-            .hero h1 { font-size: 4.7rem; }
-            .hero::after { right: -15px; font-size: 210px; }
-            .content { padding: 34px 22px 40px; }
-            .info-grid { gap: 9px; }
-            .info-card { min-height: 122px; padding: 16px; }
-            .info-card.location { align-items: flex-start; }
-            .menu-card { padding: 22px; }
-            .menu-items { grid-template-columns: repeat(2, 1fr); }
-            .radio-group { grid-template-columns: 1fr; }
-            .phone-row { flex-direction: column; }
-            .phone-row select { width: 100% !important; }
-            .container.admin-wide { padding: 24px 18px; }
-            .stats { grid-template-columns: 1fr; }
-            .table-section { overflow-x: auto; }
-        }
-        @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+        /* Painel administrativo */
+        .admin-container{display:none;max-width:1200px;min-height:auto;margin:30px auto;padding:42px;border-radius:22px}.admin-container.show{display:block}.admin-container>h1{margin-bottom:25px;font:600 2.5rem 'Oswald'}.login-form{max-width:400px;margin:auto}.logout-btn,.copy-btn{margin-bottom:20px;padding:10px 18px;border:0;border-radius:9px;color:white;background:var(--forest);font-weight:700}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:30px}.stat-card{padding:20px;border:1px solid var(--line);border-radius:14px;text-align:center;background:white}.stat-number{color:var(--orange);font:700 2.3rem 'Oswald'}.stat-label{color:var(--muted);font-size:.7rem;text-transform:uppercase}.age-filter{display:flex;align-items:center;gap:10px;margin-bottom:15px;flex-wrap:wrap}.age-filter label{margin:0}.age-filter select{width:auto;padding:8px}.table-section{margin-top:25px}.table-section h2{margin-bottom:15px}table{width:100%;border-collapse:collapse;background:white;font-size:.82rem}th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}th{color:white;background:var(--night);font-size:.68rem;text-transform:uppercase}.rsvp-list{margin-top:25px}.rsvp-item{margin-bottom:12px;padding:18px;border:1px solid var(--line);border-radius:13px}.rsvp-item p{margin:5px 0;color:var(--muted);font-size:.82rem}.rsvp-status{display:inline-block;padding:5px 9px;border-radius:99px;color:white;font-size:.65rem;text-transform:uppercase}.rsvp-status.confirmed{background:#2f7853}.rsvp-status.declined{background:var(--orange)}.loading{padding:20px;text-align:center}
+        @media(min-width:1200px){.rsvp-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}}
+        @media(max-width:900px){.invite-shell{display:block}.poster{position:relative;height:760px}.hero-art{width:390px;right:-70px;top:20%}.details{padding:58px 26px}.poster-inner{padding:32px}.poster h1{font-size:7.5rem;max-width:500px}}
+        @media(max-width:560px){.poster{height:680px}.poster h1{font-size:5.5rem}.poster h1 .faz{display:block;margin:8px 0;font-size:.35em;vertical-align:0}.hero-art{width:310px;right:-80px;top:27%}.poster-sub{max-width:280px;font-size:.8rem}.scroll-cue{display:none}.date-number{font-size:3rem}.event-grid{grid-template-columns:1fr}.event-card.wide{grid-column:auto}.menu-band{padding:25px}.menu-list{grid-template-columns:1fr}.radio-group{grid-template-columns:1fr}.phone-row{flex-direction:column}.phone-row select{width:100%!important}.admin-container{margin:0;padding:24px 18px;border-radius:0}.stats{grid-template-columns:1fr}.table-section{overflow:auto}}
+        @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
     </style>
 </head>
 <body>
 
 <!-- Página Pública -->
 <main class="container" id="publicContainer">
-    <header class="hero">
-        <div class="hero-top">
-            <div class="eyebrow">Convite especial</div>
-            <div class="beer-mark" aria-hidden="true">🍺</div>
-        </div>
-        <div class="hero-copy">
-            <p class="hero-kicker">Prepara o brinde porque o</p>
-            <h1>Felipe<br>faz <span>44.</span></h1>
-            <p class="hero-note">Uma tarde sem frescura, com cerveja gelada, comida de boteco e as melhores companhias.</p>
-        </div>
-        <div class="hero-pills" aria-label="Destaques da festa">
-            <span class="hero-pill">03 outubro</span>
-            <span class="hero-pill">a partir das 15h30</span>
-            <span class="hero-pill">sábado</span>
-        </div>
-    </header>
-
-    <div class="content">
+  <div class="invite-shell">
+    <section class="poster" aria-labelledby="inviteTitle">
+      <div class="poster-inner">
+        <div class="brand-row"><div class="brand"><span class="brand-dot"></span> Boteco do Felipe</div><div class="edition">Edição 44</div></div>
+        <svg class="hero-art" viewBox="0 0 420 520" role="img" aria-label="Caneca de cerveja ilustrada">
+          <defs><linearGradient id="beer" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffc94a"/><stop offset="1" stop-color="#e48016"/></linearGradient></defs>
+          <g transform="translate(50 38)"><path d="M78 93h211l-24 330c-2 25-20 43-44 43H132c-24 0-42-18-44-43L66 114c-1-12 4-21 12-21Z" fill="url(#beer)" stroke="#f8eed9" stroke-width="8"/><path d="M286 146h28c50 0 65 35 61 78-5 57-35 89-89 89" fill="none" stroke="#f8eed9" stroke-width="25"/><path d="M100 191h164M105 263h153M111 335h142" stroke="#fff" stroke-opacity=".28" stroke-width="5"/><g class="foam" fill="#fff8df" stroke="#173128" stroke-width="5"><circle cx="90" cy="87" r="43"/><circle cx="135" cy="64" r="53"/><circle cx="190" cy="67" r="47"/><circle cx="239" cy="70" r="48"/><circle cx="278" cy="98" r="36"/><path d="M78 91h211v48c-35 22-64-9-95 9-30 17-55-10-86 4L78 91Z"/></g><path d="M155 183c-5 72-1 158 9 228" fill="none" stroke="#fff" stroke-linecap="round" stroke-opacity=".55" stroke-width="13"/></g>
+        </svg>
+        <div class="poster-copy"><p class="poster-kicker">Um brinde aos bons encontros</p><h1 id="inviteTitle">Felipe <span class="faz">faz</span><span class="age">44</span></h1><p class="poster-sub">Cerveja trincando, petisco na mesa e os amigos que fazem qualquer sábado virar história.</p></div>
+        <div class="poster-footer"><div class="date-stamp"><span class="date-number">03</span><span class="date-copy">Outubro<br>2026 · 15h30</span></div><span class="scroll-cue">Role para confirmar ↓</span></div>
+      </div>
+    </section>
+    <section class="details">
+      <div class="details-inner">
         <div id="statusMessage" aria-live="polite"></div>
-
-        <section aria-labelledby="detailsTitle">
-            <p class="section-label" id="detailsTitle">Anota aí</p>
-            <div class="info-grid">
-                <article class="info-card">
-                    <span class="info-icon" aria-hidden="true">◷</span>
-                    <small>Quando</small>
-                    <strong>3 de outubro</strong>
-                    <p>Sábado, às 15h30</p>
-                </article>
-                <article class="info-card">
-                    <span class="info-icon" aria-hidden="true">☀</span>
-                    <small>Até quando?</small>
-                    <strong>Sem hora</strong>
-                    <p>pra acabar</p>
-                </article>
-                <article class="info-card location">
-                    <span class="info-icon" aria-hidden="true">⌖</span>
-                    <div><small>Onde</small><strong>Boteco · 5414 av. Gatineau</strong><p>Chega junto e fica à vontade.</p></div>
-                </article>
-            </div>
-        </section>
-
-        <section class="menu-card" aria-labelledby="menuTitle">
-            <div class="menu-head"><h2 id="menuTitle">O que vai ter</h2><span>menu da casa</span></div>
-            <div class="menu-items">
-                <div class="menu-item"><b>🍺</b><span>Cerveja</span></div>
-                <div class="menu-item"><b>🥟</b><span>Pastel</span></div>
-                <div class="menu-item"><b>🍗</b><span>Coxinha</span></div>
-                <div class="menu-item"><b>☺</b><span>Risadas</span></div>
-                <div class="menu-item"><b>♥</b><span>Amigos</span></div>
-                <div class="menu-item"><b>✦</b><span>Memórias</span></div>
-            </div>
-        </section>
-
+        <div class="intro"><p class="section-tag">Convite aberto</p><h2>Sem cerimônia.<br><em>Só chega junto.</em></h2><p class="intro-text">Vou comemorar meus 44 do jeito certo: mesa cheia, conversa boa e zero pressa para ir embora. Sua presença é o melhor presente.</p></div>
+        <div class="event-grid">
+          <article class="event-card"><div class="event-icon">◷</div><small>Quando</small><strong>Sábado, 3 de outubro</strong><p>A partir das 15h30</p></article>
+          <article class="event-card"><div class="event-icon">∞</div><small>Duração</small><strong>Sem hora pra acabar</strong><p>Domingo a gente resolve</p></article>
+          <article class="event-card wide"><div class="event-icon">⌖</div><div><small>Nosso balcão</small><strong>5414 av. Gatineau</strong><p>Boteco · chega e puxa uma cadeira</p></div></article>
+        </div>
+        <section class="menu-band" aria-labelledby="menuTitle"><div class="menu-title"><h3 id="menuTitle">Menu da felicidade</h3><span>Por conta da casa</span></div><div class="menu-list"><div class="menu-row"><b>Cerveja gelada</b><span>🍺</span></div><div class="menu-row"><b>Pastel crocante</b><span>🥟</span></div><div class="menu-row"><b>Coxinha</b><span>✦</span></div><div class="menu-row"><b>Amigos & risadas</b><span>♥</span></div></div></section>
         <section class="form-section" aria-labelledby="rsvpTitle">
-            <div class="form-heading">
-                <p class="section-label">Reserva de mesa</p>
-                <h2 id="rsvpTitle">Você vem brindar comigo?</h2>
-                <p>Confirme sua presença e conte quem vem com você.</p>
+          <div class="form-head"><p class="section-tag">Confirmação</p><h2 id="rsvpTitle">Guardo um lugar<br>pra você?</h2><p>Responda até 27 de setembro e conte quem vem junto.</p></div>
+          <form id="rsvpForm">
+            <div class="form-group"><label for="name">Seu nome *</label><input type="text" id="name" required autocomplete="name" placeholder="Como podemos te chamar?"></div>
+            <div class="form-group"><label>Você vem? *</label><div class="radio-group"><div class="radio-option"><input type="radio" id="attendYes" name="attending" value="yes" required><label for="attendYes">Claro, pode gelar a minha 🍻</label></div><div class="radio-option"><input type="radio" id="attendNo" name="attending" value="no" required><label for="attendNo">Dessa vez não consigo</label></div></div></div>
+            <div id="conditionalFields" class="conditional-fields">
+              <div class="form-group"><label for="phone">Telefone para contato *</label><div class="phone-row" style="display:flex;gap:10px"><select id="phoneCountry" aria-label="País" style="width:auto;min-width:175px;flex-shrink:0"><option value="+1">🇨🇦 Canadá +1</option><option value="+55">🇧🇷 Brasil +55</option></select><input type="tel" id="phone" autocomplete="tel" placeholder="(514) 000-0000" style="flex:1" required></div></div>
+              <div class="form-group"><label>Outros adultos/adolescentes (13+)?</label><div id="adultsContainer"></div><button type="button" class="add-btn" onclick="addAdult()">+ Adicionar adulto</button></div>
+              <div class="form-group"><label>Crianças até 12 anos?</label><div id="childrenContainer"></div><button type="button" class="add-btn" onclick="addChild()">+ Adicionar criança</button></div>
             </div>
-            <form id="rsvpForm">
-                <div class="form-group">
-                    <label for="name">Seu nome *</label>
-                    <input type="text" id="name" required autocomplete="name" placeholder="Nome completo">
-                </div>
-                <div class="form-group">
-                    <label>Você vai? *</label>
-                    <div class="radio-group">
-                        <div class="radio-option"><input type="radio" id="attendYes" name="attending" value="yes" required><label for="attendYes">Sim, estarei lá! 🍻</label></div>
-                        <div class="radio-option"><input type="radio" id="attendNo" name="attending" value="no" required><label for="attendNo">Não vou conseguir</label></div>
-                    </div>
-                </div>
-                <div id="conditionalFields" class="conditional-fields">
-                    <div class="form-group">
-                        <label for="phone">Telefone para contato *</label>
-                        <div class="phone-row" style="display:flex; gap:10px;">
-                            <select id="phoneCountry" aria-label="País" style="width:auto; min-width:175px; flex-shrink:0;"><option value="+1">🇨🇦 Canadá +1</option><option value="+55">🇧🇷 Brasil +55</option></select>
-                            <input type="tel" id="phone" autocomplete="tel" placeholder="(514) 000-0000" style="flex:1;" required>
-                        </div>
-                    </div>
-                    <div class="form-group"><label>Outros adultos/adolescentes (13+)?</label><div id="adultsContainer"></div><button type="button" class="add-btn" onclick="addAdult()">+ Adicionar adulto</button></div>
-                    <div class="form-group"><label>Crianças até 12 anos?</label><div id="childrenContainer"></div><button type="button" class="add-btn" onclick="addChild()">+ Adicionar criança</button></div>
-                </div>
-                <button type="submit" class="submit-btn">Confirmar presença →</button>
-                <p class="fine-print">Confirme até 27 de setembro. Vai ser bom demais ter você lá.</p>
-            </form>
+            <button type="submit" class="submit-btn">Confirmar meu lugar →</button><p class="fine-print">Leva só um minutinho. Vai ser bom demais ter você lá.</p>
+          </form>
         </section>
-        <div class="admin-link"><a href="#admin" onclick="showAdmin(); return false;" aria-label="Área administrativa">.</a></div>
-    </div>
+        <div class="admin-link"><a href="#admin" onclick="showAdmin();return false" aria-label="Área administrativa">.</a></div>
+      </div>
+    </section>
+  </div>
 </main>
 
 <!-- Admin -->
@@ -575,7 +348,7 @@
         }
 
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Confirmar presença →';
+        submitBtn.textContent = 'Confirmar meu lugar →';
     });
 
     window.showAdmin = function() {
