@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felipe faz 44! 🍺</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap');
+        :root { --night:#12251f; --forest:#1b3a30; --lime:#d7e857; --beer:#f4aa25; --orange:#e05a35; --cream:#f6f0e3; --paper:#fffdf7; --ink:#1d2823; --muted:#6f776f; --line:#dfe2d7; }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        html { scroll-behavior:smooth; }
+        body { min-height:100vh; color:var(--ink); background:#e9e8df; font-family:'Manrope',sans-serif; }
+        button,input,select { font:inherit; }
+        button { cursor:pointer; }
+        .container { width:100%; min-height:100vh; background:var(--paper); }
+        .invite-shell { display:grid; grid-template-columns:minmax(420px, 46%) 1fr; min-height:100vh; }
+        .poster { position:sticky; top:0; height:100vh; overflow:hidden; color:var(--cream); background:var(--night); isolation:isolate; }
+        .poster::before { content:''; position:absolute; inset:0; z-index:-2; opacity:.18; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E"); }
+        .poster::after { content:''; position:absolute; width:38vw; height:38vw; min-width:430px; min-height:430px; top:21%; left:50%; z-index:-1; translate:-50% -10%; border:1px solid rgba(255,255,255,.1); border-radius:50%; box-shadow:0 0 0 45px rgba(255,255,255,.025),0 0 0 120px rgba(255,255,255,.018); }
+        .poster-inner { position:relative; height:100%; padding:clamp(28px,4vw,60px); display:flex; flex-direction:column; justify-content:space-between; }
+        .brand-row { display:flex; align-items:center; justify-content:space-between; }
+        .brand { display:flex; align-items:center; gap:10px; font:600 .72rem 'DM Sans'; letter-spacing:.18em; text-transform:uppercase; }
+        .brand-dot { width:9px; height:9px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 5px rgba(215,232,87,.12); }
+        .edition { color:#aab8af; font-size:.66rem; letter-spacing:.15em; text-transform:uppercase; }
+        .poster-copy { position:relative; z-index:2; }
+        .poster-kicker { margin-bottom:18px; color:var(--lime); font:600 .78rem 'DM Sans'; letter-spacing:.16em; text-transform:uppercase; }
+        .poster h1 { max-width:650px; font:700 clamp(5.3rem,10.5vw,10rem)/.75 'Oswald',sans-serif; letter-spacing:-.065em; text-transform:uppercase; }
+        .poster h1 .faz { display:inline-block; margin-left:.1em; color:var(--beer); font-size:.42em; letter-spacing:-.02em; vertical-align:.56em; transform:rotate(-6deg); }
+        .poster h1 .age { display:block; color:transparent; -webkit-text-stroke:2px var(--cream); }
+        .poster-sub { max-width:450px; margin-top:26px; color:#b9c4bd; font-size:.93rem; line-height:1.7; }
+        .poster-footer { display:flex; align-items:end; justify-content:space-between; gap:20px; }
+        .date-stamp { display:flex; gap:14px; align-items:center; }
+        .date-number { color:var(--lime); font:700 3.8rem/.8 'Oswald'; }
+        .date-copy { color:#c7cec9; font-size:.72rem; line-height:1.5; letter-spacing:.08em; text-transform:uppercase; }
+        .scroll-cue { color:#89988e; font-size:.68rem; letter-spacing:.14em; writing-mode:vertical-rl; text-transform:uppercase; }
+        .hero-art { position:absolute; right:-5%; top:18%; width:min(33vw,500px); opacity:.96; transform:rotate(7deg); filter:drop-shadow(0 25px 30px rgba(0,0,0,.28)); }
+        .hero-art .foam { animation:float 4s ease-in-out infinite; transform-origin:center; }
+        @keyframes float { 50% { transform:translateY(-8px); } }
+
+        .details { padding:clamp(42px,7vw,95px) clamp(26px,7vw,100px); background:var(--paper); }
+        .details-inner { max-width:690px; margin:auto; }
+        .section-tag { display:flex; align-items:center; gap:11px; margin-bottom:22px; color:var(--orange); font:700 .69rem 'DM Sans'; letter-spacing:.16em; text-transform:uppercase; }
+        .section-tag::before { content:''; width:28px; height:2px; background:currentColor; }
+        .intro h2 { max-width:650px; font:600 clamp(2.5rem,5vw,4.7rem)/1 'Oswald'; letter-spacing:-.035em; text-transform:uppercase; }
+        .intro h2 em { color:var(--orange); font-style:normal; }
+        .intro-text { max-width:580px; margin:24px 0 40px; color:var(--muted); font-size:1rem; line-height:1.8; }
+        .event-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; overflow:hidden; margin-bottom:56px; border:1px solid var(--line); border-radius:22px; background:var(--line); }
+        .event-card { min-height:145px; padding:25px; display:flex; align-items:center; gap:18px; background:var(--paper); }
+        .event-card.wide { grid-column:1/-1; min-height:128px; }
+        .event-copy { min-width:0; }
+        .event-icon { width:46px; height:46px; display:grid; place-items:center; flex:0 0 46px; border-radius:14px; color:var(--night); background:var(--lime); }
+        .event-icon svg { width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+        .event-card small { display:block; margin:0 0 5px; color:#949a92; font:700 .65rem 'DM Sans'; letter-spacing:.14em; text-transform:uppercase; }
+                .event-card strong { font:600 1.3rem 'Oswald'; text-transform:uppercase; }
+        .event-card p { margin-top:4px; color:var(--muted); font-size:.78rem; }
+        .menu-band { position:relative; margin:0 0 62px; padding:34px; overflow:hidden; border-radius:24px; color:var(--cream); background:var(--orange); }
+        .menu-band::after { content:'44'; position:absolute; right:-8px; bottom:-50px; color:rgba(255,255,255,.09); font:700 10rem 'Oswald'; }
+        .menu-title { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:end; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,.25); }
+        .menu-title h3 { font:600 1.7rem 'Oswald'; text-transform:uppercase; }
+        .menu-title span { font-size:.7rem; opacity:.75; letter-spacing:.1em; text-transform:uppercase; }
+        .menu-list { position:relative; z-index:1; display:grid; grid-template-columns:repeat(2,1fr); gap:0 28px; margin-top:16px; }
+        .menu-row { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px dashed rgba(255,255,255,.22); font-size:.82rem; }
+        .menu-row b { font-weight:600; }
+        .menu-icon { width:30px; height:30px; display:grid; place-items:center; flex:0 0 30px; margin:-6px 0; border-radius:9px; color:var(--cream); background:rgba(255,255,255,.12); }
+        .menu-icon svg { width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+
+        .form-head { margin-bottom:30px; }
+        .form-head h2 { font:600 clamp(2.1rem,4vw,3.5rem)/1.05 'Oswald'; letter-spacing:-.025em; text-transform:uppercase; }
+        .form-head p { margin-top:12px; color:var(--muted); line-height:1.6; }
+        .form-group { margin-bottom:20px; }
+        label { display:block; margin-bottom:8px; color:#4e5852; font:700 .67rem 'DM Sans'; letter-spacing:.11em; text-transform:uppercase; }
+        input,select,textarea { width:100%; padding:15px 16px; border:1px solid var(--line); border-radius:12px; color:var(--ink); background:white; outline:none; transition:.2s; }
+        input:focus,select:focus,textarea:focus { border-color:var(--forest); box-shadow:0 0 0 4px rgba(27,58,48,.08); }
+        input::placeholder { color:#afb3ae; }
+        .radio-group { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+        .radio-option { display:flex; align-items:center; gap:10px; padding:15px; border:1px solid var(--line); border-radius:12px; background:white; transition:.2s; }
+        .radio-option:hover,.radio-option:has(input:checked) { border-color:var(--forest); background:#f2f5e5; }
+        .radio-option input { width:auto; accent-color:var(--forest); }
+        .radio-option label { margin:0; cursor:pointer; color:var(--ink); font-size:.78rem; letter-spacing:0; text-transform:none; }
+        .conditional-fields { display:none; margin:22px 0; padding:22px; border:1px solid var(--line); border-radius:16px; background:#f4f3ec; }
+        .conditional-fields.show { display:block; animation:reveal .25s ease; }
+        @keyframes reveal { from { opacity:0; transform:translateY(-7px); } }
+        .person-entry { margin:10px 0; padding:14px; border:1px solid var(--line); border-radius:12px; background:white; }
+        .person-entry-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; color:var(--muted); font-size:.7rem; text-transform:uppercase; }
+        .remove-btn,.delete-btn { padding:6px 10px; border:0; border-radius:7px; color:white; background:var(--orange); }
+        .add-btn { width:100%; padding:11px; border:1px dashed #abb0a8; border-radius:10px; color:#59615c; background:transparent; font-size:.78rem; font-weight:700; }
+        .submit-btn { width:100%; margin-top:8px; padding:17px; border:0; border-radius:12px; color:white; background:var(--night); font:700 .77rem 'DM Sans'; letter-spacing:.12em; text-transform:uppercase; box-shadow:0 12px 25px rgba(18,37,31,.15); transition:.2s; }
+        .submit-btn:hover { translate:0 -2px; background:var(--forest); box-shadow:0 16px 30px rgba(18,37,31,.2); }
+        .submit-btn:disabled { opacity:.5; translate:0; }
+        .fine-print { margin-top:13px; color:#999f99; font-size:.71rem; text-align:center; }
+        .message { margin-bottom:25px; padding:17px; border-radius:12px; text-align:center; font-size:.85rem; line-height:1.5; }
+        .message.success { color:#17623e; background:#e5f5eb; border:1px solid #a9d8ba; }.message.info{color:#245070;background:#e9f4fa;border:1px solid #b9d8e9}.message.warning{color:#77550a;background:#fff4cf;border:1px solid #ecd47c}.message a{color:var(--orange);font-weight:700}
+        .admin-link { height:1px;text-align:center }.admin-link a{color:transparent;text-decoration:none;user-select:none}
+
+        /* Painel administrativo */
+        .admin-container{display:none;max-width:1200px;min-height:auto;margin:30px auto;padding:42px;border-radius:22px}.admin-container.show{display:block}.admin-container>h1{margin-bottom:25px;font:600 2.5rem 'Oswald'}.login-form{max-width:400px;margin:auto}.logout-btn,.copy-btn{margin-bottom:20px;padding:10px 18px;border:0;border-radius:9px;color:white;background:var(--forest);font-weight:700}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:30px}.stat-card{padding:20px;border:1px solid var(--line);border-radius:14px;text-align:center;background:white}.stat-number{color:var(--orange);font:700 2.3rem 'Oswald'}.stat-label{color:var(--muted);font-size:.7rem;text-transform:uppercase}.age-filter{display:flex;align-items:center;gap:10px;margin-bottom:15px;flex-wrap:wrap}.age-filter label{margin:0}.age-filter select{width:auto;padding:8px}.table-section{margin-top:25px}.table-section h2{margin-bottom:15px}table{width:100%;border-collapse:collapse;background:white;font-size:.82rem}th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left}th{color:white;background:var(--night);font-size:.68rem;text-transform:uppercase}.rsvp-list{margin-top:25px}.rsvp-item{margin-bottom:12px;padding:18px;border:1px solid var(--line);border-radius:13px}.rsvp-item p{margin:5px 0;color:var(--muted);font-size:.82rem}.rsvp-status{display:inline-block;padding:5px 9px;border-radius:99px;color:white;font-size:.65rem;text-transform:uppercase}.rsvp-status.confirmed{background:#2f7853}.rsvp-status.declined{background:var(--orange)}.loading{padding:20px;text-align:center}
+        @media(min-width:1200px){.rsvp-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}}
+        @media(max-width:900px){.invite-shell{display:block}.poster{position:relative;height:760px}.hero-art{width:390px;right:-70px;top:20%}.details{padding:58px 26px}.poster-inner{padding:32px}.poster h1{font-size:7.5rem;max-width:500px}}
+        @media(max-width:560px){.poster{height:680px}.poster h1{font-size:5.5rem}.poster h1 .faz{display:block;margin:8px 0;font-size:.35em;vertical-align:0}.hero-art{width:310px;right:-80px;top:27%}.poster-sub{max-width:280px;font-size:.8rem}.scroll-cue{display:none}.date-number{font-size:3rem}.event-grid{grid-template-columns:1fr}.event-card.wide{grid-column:auto}.menu-band{padding:25px}.menu-list{grid-template-columns:1fr}.radio-group{grid-template-columns:1fr}.phone-row{flex-direction:column}.phone-row select{width:100%!important}.admin-container{margin:0;padding:24px 18px;border-radius:0}.stats{grid-template-columns:1fr}.table-section{overflow:auto}}
+        @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+    </style>
+</head>
+<body>
+
+<!-- Página Pública -->
+<main class="container" id="publicContainer">
+  <div class="invite-shell">
+    <section class="poster" aria-labelledby="inviteTitle">
+      <div class="poster-inner">
+        <div class="brand-row"><div class="brand"><span class="brand-dot"></span> Boteco do Felipe</div><div class="edition">Edição 44</div></div>
+        <svg class="hero-art" viewBox="0 0 420 520" role="img" aria-label="Caneca de cerveja ilustrada">
+          <defs><linearGradient id="beer" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffc94a"/><stop offset="1" stop-color="#e48016"/></linearGradient></defs>
+          <g transform="translate(50 38)"><path d="M78 93h211l-24 330c-2 25-20 43-44 43H132c-24 0-42-18-44-43L66 114c-1-12 4-21 12-21Z" fill="url(#beer)" stroke="#f8eed9" stroke-width="8"/><path d="M286 146h28c50 0 65 35 61 78-5 57-35 89-89 89" fill="none" stroke="#f8eed9" stroke-width="25"/><path d="M100 191h164M105 263h153M111 335h142" stroke="#fff" stroke-opacity=".28" stroke-width="5"/><g class="foam" fill="#fff8df" stroke="#173128" stroke-width="5"><circle cx="90" cy="87" r="43"/><circle cx="135" cy="64" r="53"/><circle cx="190" cy="67" r="47"/><circle cx="239" cy="70" r="48"/><circle cx="278" cy="98" r="36"/><path d="M78 91h211v48c-35 22-64-9-95 9-30 17-55-10-86 4L78 91Z"/></g><path d="M155 183c-5 72-1 158 9 228" fill="none" stroke="#fff" stroke-linecap="round" stroke-opacity=".55" stroke-width="13"/></g>
+        </svg>
+        <div class="poster-copy"><p class="poster-kicker">Um brinde aos bons encontros</p><h1 id="inviteTitle">Felipe <span class="faz">faz</span><span class="age">44</span></h1><p class="poster-sub">Cerveja trincando, petisco na mesa e os amigos que fazem qualquer sábado virar história.</p></div>
+        <div class="poster-footer"><div class="date-stamp"><span class="date-number">03</span><span class="date-copy">Outubro<br>2026 · 15h30</span></div><span class="scroll-cue">Role para confirmar ↓</span></div>
+      </div>
+    </section>
+    <section class="details">
+      <div class="details-inner">
+        <div id="statusMessage" aria-live="polite"></div>
+        <div class="intro"><p class="section-tag">Convite aberto</p><h2>Sem cerimônia.<br><em>Só chega junto.</em></h2><p class="intro-text">Vou comemorar meus 44 do jeito certo: mesa cheia, conversa boa e zero pressa para ir embora. Sua presença é o melhor presente.</p></div>
+        <div class="event-grid">
+          <article class="event-card"><div class="event-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l3.5 2"/></svg></div><div class="event-copy"><small>Quando</small><strong>Sábado, 3 de outubro</strong><p>A partir das 15h30</p></div></article>
+          <article class="event-card"><div class="event-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.4 8.5c-2.1 0-3.9 1.5-3.9 3.5s1.8 3.5 3.9 3.5c3.6 0 4.1-7 7.2-7 2.1 0 3.9 1.5 3.9 3.5s-1.8 3.5-3.9 3.5c-3.1 0-3.6-4.5-5.7-6.3"/></svg></div><div class="event-copy"><small>Duração</small><strong>Sem hora pra acabar</strong><p>Domingo a gente resolve</p></div></article>
+          <article class="event-card wide"><div class="event-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div class="event-copy"><small>Nosso balcão</small><strong>5414 av. Gatineau</strong><p>Boteco · chega e puxa uma cadeira</p></div></article>
+        </div>
+        <section class="menu-band" aria-labelledby="menuTitle"><div class="menu-title"><h3 id="menuTitle">Menu da felicidade</h3></div><div class="menu-list"><div class="menu-row"><b>Cerveja gelada</b><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8h11v12H7a2 2 0 0 1-2-2Z"/><path d="M16 11h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2M7 8V6a2 2 0 0 1 4 0v2m0 0V5.5a2 2 0 0 1 4 0V8"/></svg></span></div><div class="menu-row"><b>Pastel crocante</b><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 7 2-2 2 1 2-1 2 1 2-1 2 1 2-1v12l-2 2-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="m9 10 6 4m0-4-6 4"/></svg></span></div><div class="menu-row"><b>Coxinha</b><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3c0 4-6 6.7-6 12a6 6 0 0 0 12 0c0-5.3-6-8-6-12Z"/><path d="M9.5 16.5c.7.8 1.5 1.1 2.5 1.1"/></svg></span></div><div class="menu-row"><b>Amigos & risadas</b><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.4-3.3 2.2-5 5.5-5s5.1 1.7 5.5 5M16 6.5a3 3 0 0 1 0 5.8M16 14c2.7.2 4.1 1.9 4.5 5"/></svg></span></div></div></section>
+        <section class="form-section" aria-labelledby="rsvpTitle">
+          <div class="form-head"><p class="section-tag">Confirmação</p><h2 id="rsvpTitle">Guardo um lugar<br>pra você?</h2><p>Responda até 27 de setembro e conte quem vem junto.</p></div>
+          <form id="rsvpForm">
+            <div class="form-group"><label for="name">Seu nome *</label><input type="text" id="name" required autocomplete="name" placeholder="Como podemos te chamar?"></div>
+            <div class="form-group"><label>Você vem? *</label><div class="radio-group"><div class="radio-option"><input type="radio" id="attendYes" name="attending" value="yes" required><label for="attendYes">Claro, pode gelar a minha 🍻</label></div><div class="radio-option"><input type="radio" id="attendNo" name="attending" value="no" required><label for="attendNo">Dessa vez não consigo</label></div></div></div>
+            <div id="conditionalFields" class="conditional-fields">
+              <div class="form-group"><label for="phone">Telefone para contato *</label><div class="phone-row" style="display:flex;gap:10px"><select id="phoneCountry" aria-label="País" style="width:auto;min-width:175px;flex-shrink:0"><option value="+1">🇨🇦 Canadá +1</option><option value="+55">🇧🇷 Brasil +55</option></select><input type="tel" id="phone" autocomplete="tel" placeholder="(514) 000-0000" style="flex:1" required></div></div>
+              <div class="form-group"><label>Outros adultos/adolescentes (13+)?</label><div id="adultsContainer"></div><button type="button" class="add-btn" onclick="addAdult()">+ Adicionar adulto</button></div>
+              <div class="form-group"><label>Crianças até 12 anos?</label><div id="childrenContainer"></div><button type="button" class="add-btn" onclick="addChild()">+ Adicionar criança</button></div>
+            </div>
+            <button type="submit" class="submit-btn">Confirmar meu lugar →</button><p class="fine-print">Leva só um minutinho. Vai ser bom demais ter você lá.</p>
+          </form>
+        </section>
+        <div class="admin-link"><a href="#admin" onclick="showAdmin();return false" aria-label="Área administrativa">.</a></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Admin -->
+<div class="container admin-container admin-wide" id="adminContainer">
+    <h1 style="font-family:'Special Elite',cursive; color:#2c1a0e; margin-bottom:25px;">🍺 Painel Admin</h1>
+
+    <div id="loginForm" class="login-form">
+        <div class="form-group">
+            <label for="adminPassword">Senha de acesso:</label>
+            <input type="password" id="adminPassword" placeholder="Digite a senha">
+        </div>
+        <button class="submit-btn" onclick="adminLogin()">Entrar</button>
+        <div class="admin-link" style="display:block; margin-top:20px;">
+            <a href="#" onclick="showPublic(); return false;" style="color:#8b5a2b !important; font-size:0.9em;">← Voltar para RSVP</a>
+        </div>
+    </div>
+
+    <div id="adminPanel" style="display:none;">
+        <button class="logout-btn" onclick="adminLogout()">Sair</button>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalConfirmed">0</div>
+                <div class="stat-label">Confirmados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalDeclined">0</div>
+                <div class="stat-label">Não virão</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalGuests">0</div>
+                <div class="stat-label">Total de Pessoas</div>
+            </div>
+        </div>
+
+        <div class="table-section">
+            <h2>📋 Lista de Presença</h2>
+
+            <div class="age-filter">
+                <label style="margin:0;">Idade mínima para contabilizar:</label>
+                <select id="minAge" onchange="renderTable()">
+                    <option value="0">Todas</option>
+                    <option value="1">1 ano+</option>
+                    <option value="2">2 anos+</option>
+                    <option value="3">3 anos+</option>
+                    <option value="4">4 anos+</option>
+                    <option value="5" selected>5 anos+</option>
+                    <option value="6">6 anos+</option>
+                </select>
+            </div>
+
+            <button class="copy-btn" onclick="copyToClipboard()">📋 Copiar para Excel</button>
+
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Responsável</th>
+                            <th>Telefone</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rsvpTableBody">
+                        <tr><td colspan="6" style="text-align:center;">Carregando...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="rsvp-list" id="rsvpList">
+            <div class="loading">Carregando confirmações...</div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+    const CONFIG = {
+        eventDate: '2026-10-03',
+        closeDate: '2026-09-27T23:59:00',
+        whatsappNumber: '15146599937',
+        adminPasswordHash: 'fe64888257b171ca96f1e41b1a09e1c948ac51d175f62414b6f230d9b817ce4c'
+    };
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCUT2lzMskGWm8AvvzsbNWOo4Sr_z77zF4",
+        authDomain: "magamelo-dbb39.firebaseapp.com",
+        projectId: "magamelo-dbb39",
+        storageBucket: "magamelo-dbb39.firebasestorage.app",
+        messagingSenderId: "524846619592",
+        appId: "1:524846619592:web:f4432e8427599219e2fefd"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let adultsCount = 0, childrenCount = 0, allRsvps = [];
+
+    function checkEventStatus() {
+        const now = new Date();
+        const eventDate = new Date(CONFIG.eventDate);
+        const closeDate = new Date(CONFIG.closeDate);
+
+        const statusDiv = document.getElementById('statusMessage');
+        const form = document.getElementById('rsvpForm');
+
+        if (now > eventDate) {
+            statusDiv.className = 'message info';
+            statusDiv.innerHTML = '🍺 A festa já aconteceu! Obrigado a todos que compareceram! Saúde!';
+            form.style.display = 'none';
+            return false;
+        } else if (now > closeDate) {
+            statusDiv.className = 'message warning';
+            statusDiv.innerHTML = `⏰ As confirmações estão encerradas.<br>Para mais informações, entre em contato pelo WhatsApp:<br><a href="https://wa.me/${CONFIG.whatsappNumber}">Clique aqui para contato</a>`;
+            form.style.display = 'none';
+            return false;
+        }
+        return true;
+    }
+
+    document.querySelectorAll('input[name="attending"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const fields = document.getElementById('conditionalFields');
+            const phone = document.getElementById('phone');
+            if (this.value === 'yes') { fields.classList.add('show'); phone.required = true; }
+            else { fields.classList.remove('show'); phone.required = false; }
+        });
+    });
+
+    window.addAdult = function() {
+        adultsCount++;
+        const div = document.createElement('div');
+        div.className = 'person-entry';
+        div.innerHTML = `
+            <div class="person-entry-header">
+                <strong>Adulto ${adultsCount}</strong>
+                <button type="button" class="remove-btn" onclick="this.parentElement.parentElement.remove()">Remover</button>
+            </div>
+            <input type="text" placeholder="Nome completo" class="adult-name" required>
+        `;
+        document.getElementById('adultsContainer').appendChild(div);
+    };
+
+    window.addChild = function() {
+        childrenCount++;
+        const div = document.createElement('div');
+        div.className = 'person-entry';
+        div.innerHTML = `
+            <div class="person-entry-header">
+                <strong>Criança ${childrenCount}</strong>
+                <button type="button" class="remove-btn" onclick="this.parentElement.parentElement.remove()">Remover</button>
+            </div>
+            <input type="text" placeholder="Nome completo" class="child-name" style="margin-bottom:10px;" required>
+            <input type="number" placeholder="Idade" class="child-age" min="0" max="12" required>
+        `;
+        document.getElementById('childrenContainer').appendChild(div);
+    };
+
+    document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!checkEventStatus()) return;
+
+        const submitBtn = this.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        const attending = document.querySelector('input[name="attending"]:checked').value === 'yes';
+        const data = { name: document.getElementById('name').value, attending, timestamp: new Date().toISOString() };
+
+        if (attending) {
+            const country = document.getElementById('phoneCountry').value;
+            data.phone = country + ' ' + document.getElementById('phone').value;
+            data.additionalAdults = Array.from(document.querySelectorAll('.adult-name')).map(i => i.value).filter(n => n.trim());
+            data.additionalChildren = Array.from(document.querySelectorAll('.person-entry'))
+                .filter(e => e.querySelector('.child-name'))
+                .map(e => ({ name: e.querySelector('.child-name').value, age: e.querySelector('.child-age').value }))
+                .filter(c => c.name.trim());
+        }
+
+        try {
+            await addDoc(collection(db, 'felipefaz44'), data);
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.className = 'message success';
+            statusDiv.innerHTML = attending
+                ? '🍺 Confirmação recebida! Te espero lá — vai ser incrível! 🥟🎉'
+                : '😢 Que pena que não poderá vir. Obrigado por avisar!';
+            this.reset();
+            document.getElementById('conditionalFields').classList.remove('show');
+            adultsCount = 0; childrenCount = 0;
+            document.getElementById('adultsContainer').innerHTML = '';
+            document.getElementById('childrenContainer').innerHTML = '';
+            this.style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+            alert('Erro ao enviar confirmação. Por favor, tente novamente.');
+            console.error(err);
+        }
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Confirmar meu lugar →';
+    });
+
+    window.showAdmin = function() {
+        document.getElementById('publicContainer').style.display = 'none';
+        document.getElementById('adminContainer').classList.add('show');
+    };
+
+    window.showPublic = function() {
+        document.getElementById('publicContainer').style.display = 'block';
+        document.getElementById('adminContainer').classList.remove('show');
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('adminPanel').style.display = 'none';
+    };
+
+    window.adminLogin = async function() {
+        const password = document.getElementById('adminPassword').value;
+        const msgBuffer = new TextEncoder().encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        if (hashHex === CONFIG.adminPasswordHash) {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            loadRSVPs();
+        } else { alert('Senha incorreta!'); }
+    };
+
+    window.adminLogout = function() { showPublic(); document.getElementById('adminPassword').value = ''; };
+
+    async function loadRSVPs() {
+        const listDiv = document.getElementById('rsvpList');
+        const tableBody = document.getElementById('rsvpTableBody');
+        listDiv.innerHTML = '<div class="loading">Carregando...</div>';
+        tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Carregando...</td></tr>';
+
+        try {
+            const snap = await getDocs(query(collection(db, 'felipefaz44'), orderBy('timestamp', 'desc')));
+            allRsvps = [];
+            snap.forEach(d => allRsvps.push({ id: d.id, ...d.data() }));
+
+            if (allRsvps.length === 0) {
+                listDiv.innerHTML = '<div class="message info">Nenhuma confirmação ainda.</div>';
+                tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Nenhuma confirmação ainda.</td></tr>';
+                updateStats([], [], 0);
+                return;
+            }
+            renderTable();
+            renderCards(listDiv);
+        } catch (err) {
+            listDiv.innerHTML = '<div class="message warning">Erro ao carregar confirmações.</div>';
+            console.error(err);
+        }
+    }
+
+    window.renderTable = function() {
+        const minAge = parseInt(document.getElementById('minAge').value);
+        const tableBody = document.getElementById('rsvpTableBody');
+        tableBody.innerHTML = '';
+        let totalGuests = 0;
+
+        allRsvps.forEach(rsvp => {
+            if (!rsvp.attending) {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td><strong>${rsvp.name}</strong></td><td>-</td><td>-</td><td>-</td><td>❌ Não vai</td><td><button class="delete-btn" onclick="deleteRSVP('${rsvp.id}','${rsvp.name.replace(/'/g,"\\'")}')">🗑️</button></td>`;
+                tableBody.appendChild(row);
+                return;
+            }
+            const row = document.createElement('tr');
+            row.innerHTML = `<td><strong>${rsvp.name}</strong></td><td>-</td><td>-</td><td>${rsvp.phone||'-'}</td><td>✅ Vai</td><td><button class="delete-btn" onclick="deleteRSVP('${rsvp.id}','${rsvp.name.replace(/'/g,"\\'")}')">🗑️</button></td>`;
+            tableBody.appendChild(row);
+            totalGuests++;
+
+            (rsvp.additionalAdults||[]).forEach(adult => {
+                const r = document.createElement('tr');
+                r.innerHTML = `<td>${adult}</td><td>-</td><td>${rsvp.name}</td><td>-</td><td>✅ Vai</td><td>-</td>`;
+                tableBody.appendChild(r);
+                totalGuests++;
+            });
+
+            (rsvp.additionalChildren||[]).forEach(child => {
+                const age = parseInt(child.age);
+                const counts = age >= minAge;
+                const r = document.createElement('tr');
+                r.style.opacity = counts ? '1' : '0.5';
+                r.innerHTML = `<td>${child.name}${!counts?' <small style="color:#aaa">(não contabilizado)</small>':''}</td><td>${child.age} anos</td><td>${rsvp.name}</td><td>-</td><td>✅ Vai</td><td>-</td>`;
+                tableBody.appendChild(r);
+                if (counts) totalGuests++;
+            });
+        });
+
+        updateStats(allRsvps.filter(r=>r.attending), allRsvps.filter(r=>!r.attending), totalGuests);
+    };
+
+    function renderCards(listDiv) {
+        listDiv.innerHTML = '';
+        const confirmed = allRsvps.filter(r => r.attending);
+        const declined = allRsvps.filter(r => !r.attending);
+
+        if (confirmed.length > 0) {
+            const s = document.createElement('div');
+            s.innerHTML = '<h2 style="color:#2c1a0e; margin-bottom:15px; font-family:Special Elite,cursive;">✅ Confirmados</h2>';
+            confirmed.forEach(r => s.appendChild(createCard(r, true)));
+            listDiv.appendChild(s);
+        }
+        if (declined.length > 0) {
+            const s = document.createElement('div');
+            s.innerHTML = '<h2 style="color:#2c1a0e; margin:30px 0 15px; font-family:Special Elite,cursive;">❌ Não virão</h2>';
+            declined.forEach(r => s.appendChild(createCard(r, false)));
+            listDiv.appendChild(s);
+        }
+    }
+
+    window.copyToClipboard = function() {
+        const minAge = parseInt(document.getElementById('minAge').value);
+        let tsv = 'Nome\tIdade\tResponsável\tTelefone\tStatus\n';
+        allRsvps.forEach(rsvp => {
+            if (!rsvp.attending) { tsv += `${rsvp.name}\t-\t-\t-\tNão vai\n`; return; }
+            tsv += `${rsvp.name}\t-\t-\t${rsvp.phone||'-'}\tVai\n`;
+            (rsvp.additionalAdults||[]).forEach(a => { tsv += `${a}\t-\t${rsvp.name}\t-\tVai\n`; });
+            (rsvp.additionalChildren||[]).forEach(c => {
+                const counts = parseInt(c.age) >= minAge;
+                tsv += `${c.name}\t${c.age} anos\t${rsvp.name}\t-\t${counts?'Vai':'Vai (não contabilizado)'}\n`;
+            });
+        });
+        navigator.clipboard.writeText(tsv).then(() => alert('✅ Dados copiados! Cole no Excel com Ctrl+V'));
+    };
+
+    window.deleteRSVP = async function(rsvpId, name) {
+        if (!confirm(`Tem certeza que deseja excluir a confirmação de "${name}"?\n\nEsta ação não pode ser desfeita.`)) return;
+        try {
+            await deleteDoc(doc(db, 'felipefaz44', rsvpId));
+            alert('Confirmação excluída com sucesso!');
+            loadRSVPs();
+        } catch (err) { alert('Erro ao excluir. Tente novamente.'); console.error(err); }
+    };
+
+    function createCard(rsvp, attending) {
+        const div = document.createElement('div');
+        div.className = 'rsvp-item';
+        let html = `<span class="rsvp-status ${attending?'confirmed':'declined'}">${attending?'✅ Confirmado':'❌ Não virá'}</span><h3>${rsvp.name}</h3><p><strong>Data:</strong> ${new Date(rsvp.timestamp).toLocaleString('pt-BR')}</p>`;
+        if (attending) {
+            html += `<p><strong>Telefone:</strong> ${rsvp.phone}</p>`;
+            let total = 1;
+            if (rsvp.additionalAdults?.length) { total += rsvp.additionalAdults.length; html += `<p><strong>Adultos (${rsvp.additionalAdults.length}):</strong> ${rsvp.additionalAdults.join(', ')}</p>`; }
+            if (rsvp.additionalChildren?.length) { total += rsvp.additionalChildren.length; html += `<p><strong>Crianças (${rsvp.additionalChildren.length}):</strong> ${rsvp.additionalChildren.map(c=>`${c.name} (${c.age} anos)`).join(', ')}</p>`; }
+            html += `<p><strong>Total:</strong> ${total} pessoa(s)</p>`;
+        }
+        div.innerHTML = html;
+        return div;
+    }
+
+    function updateStats(confirmed, declined, totalGuests) {
+        document.getElementById('totalConfirmed').textContent = confirmed.length;
+        document.getElementById('totalDeclined').textContent = declined.length;
+        document.getElementById('totalGuests').textContent = totalGuests;
+    }
+
+    checkEventStatus();
+    if (window.location.hash === '#admin') showAdmin();
+</script>
+</body>
+</html>
