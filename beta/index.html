@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felipe faz 44! 🍺</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=League+Spartan:wght@600;700;800&display=swap');
+
+        :root {
+            --ink: #241b16;
+            --muted: #75675d;
+            --paper: #fffaf0;
+            --cream: #f7eddb;
+            --amber: #e5a323;
+            --amber-dark: #b96c12;
+            --terracotta: #b8492e;
+            --green: #284f40;
+            --line: rgba(61, 43, 31, .14);
+            --shadow: 0 28px 80px rgba(24, 14, 8, .24);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            min-height: 100vh;
+            padding: 36px 18px;
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(229,163,35,.18), transparent 28%),
+                radial-gradient(circle at 85% 90%, rgba(184,73,46,.16), transparent 30%),
+                #17362c;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .18;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            position: relative;
+            max-width: 720px;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.45);
+            border-radius: 28px;
+            background: var(--paper);
+            box-shadow: var(--shadow);
+        }
+        .container.admin-wide { max-width: 1200px; padding: 42px; }
+
+        .hero {
+            position: relative;
+            min-height: 440px;
+            padding: 42px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #fffaf0;
+            isolation: isolate;
+            background:
+                linear-gradient(125deg, rgba(22,48,39,.98), rgba(34,75,59,.94)),
+                var(--green);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            width: 330px;
+            height: 330px;
+            right: -92px;
+            top: 60px;
+            border: 2px solid rgba(255,255,255,.10);
+            border-radius: 50%;
+            box-shadow: 0 0 0 26px rgba(255,255,255,.035), 0 0 0 70px rgba(255,255,255,.025);
+        }
+        .hero::after {
+            content: '44';
+            position: absolute;
+            z-index: -1;
+            right: 20px;
+            bottom: -60px;
+            color: rgba(255,255,255,.045);
+            font: 800 260px/1 'League Spartan', sans-serif;
+            letter-spacing: -20px;
+        }
+        .hero-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: #f5d998;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+        }
+        .eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--amber); }
+        .beer-mark {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255,255,255,.22);
+            border-radius: 50%;
+            background: rgba(255,255,255,.07);
+            font-size: 1.55rem;
+            transform: rotate(7deg);
+        }
+        .hero-copy { max-width: 500px; margin: 54px 0 42px; }
+        .hero-kicker { margin-bottom: 8px; font-size: 1.1rem; color: #e8ddc8; }
+        .hero h1 {
+            max-width: 540px;
+            color: #fffaf0;
+            font: 800 clamp(4.2rem, 14vw, 7.8rem)/.76 'League Spartan', sans-serif;
+            letter-spacing: -.075em;
+            text-align: left;
+        }
+        .hero h1 span { color: var(--amber); }
+        .hero-note { margin-top: 25px; max-width: 430px; color: #d7d0c5; font-size: 1rem; line-height: 1.65; }
+        .hero-pills { display: flex; flex-wrap: wrap; gap: 9px; }
+        .hero-pill {
+            padding: 9px 14px;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 100px;
+            color: #f6ead4;
+            background: rgba(255,255,255,.06);
+            font-size: .78rem;
+            font-weight: 600;
+        }
+
+        .content { padding: 42px 48px 50px; }
+        .section-label {
+            margin-bottom: 18px;
+            color: var(--terracotta);
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 36px; }
+        .info-card {
+            position: relative;
+            min-height: 128px;
+            padding: 20px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: rgba(255,255,255,.64);
+        }
+        .info-card.location { grid-column: 1 / -1; min-height: auto; display: flex; align-items: center; gap: 18px; }
+        .info-icon {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            flex: 0 0 auto;
+            border-radius: 12px;
+            background: #f5e5c2;
+            font-size: 1.05rem;
+        }
+        .info-card small { display: block; margin: 13px 0 4px; color: var(--muted); font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+        .info-card.location small { margin-top: 0; }
+        .info-card strong { display: block; font-family: 'League Spartan', sans-serif; font-size: 1.18rem; line-height: 1.25; }
+        .info-card p { color: var(--muted); font-size: .86rem; margin-top: 3px; }
+
+        .menu-card {
+            position: relative;
+            margin-bottom: 38px;
+            padding: 28px;
+            overflow: hidden;
+            border-radius: 20px;
+            color: #fff9ec;
+            background: var(--terracotta);
+        }
+        .menu-card::after { content: '✦'; position: absolute; right: -8px; top: -32px; color: rgba(255,255,255,.1); font-size: 8rem; }
+        .menu-head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 22px; }
+        .menu-head h2 { font: 700 1.55rem/1 'League Spartan', sans-serif; }
+        .menu-head span { color: #f6d6bd; font-size: .77rem; }
+        .menu-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+        .menu-item { padding: 13px 10px; border: 1px solid rgba(255,255,255,.2); border-radius: 13px; text-align: center; background: rgba(255,255,255,.06); }
+        .menu-item b { display: block; margin-bottom: 4px; font-size: 1.25rem; }
+        .menu-item span { font-size: .76rem; font-weight: 600; }
+
+        .form-section { padding-top: 8px; }
+        .form-heading { margin-bottom: 26px; }
+        .form-heading h2 { font: 700 2rem/1.05 'League Spartan', sans-serif; letter-spacing: -.03em; }
+        .form-heading p { margin-top: 8px; color: var(--muted); font-size: .9rem; }
+        .form-group { margin-bottom: 19px; }
+        label { display: block; margin-bottom: 8px; color: #48382e; font-size: .73rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+        input, select, textarea {
+            width: 100%; padding: 14px 15px; border: 1px solid #dfd2c0; border-radius: 12px;
+            color: var(--ink); background: #fffefa; font: 500 .95rem 'DM Sans', sans-serif; transition: .2s ease;
+        }
+        input::placeholder { color: #aa9d91; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--amber-dark); box-shadow: 0 0 0 4px rgba(229,163,35,.12); }
+        .radio-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .radio-option { display: flex; align-items: center; gap: 9px; padding: 13px; cursor: pointer; border: 1px solid #dfd2c0; border-radius: 12px; background: #fffefa; transition: .2s; }
+        .radio-option:hover, .radio-option:has(input:checked) { border-color: var(--amber-dark); background: #fff7e7; }
+        .radio-option input { width: auto; accent-color: var(--terracotta); }
+        .radio-option label { margin: 0; cursor: pointer; color: var(--ink); font-size: .82rem; font-weight: 600; letter-spacing: 0; text-transform: none; }
+        .conditional-fields { display: none; margin: 22px 0; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--cream); }
+        .conditional-fields.show { display: block; animation: reveal .25s ease; }
+        @keyframes reveal { from { opacity: 0; transform: translateY(-5px); } }
+        .person-entry { margin-bottom: 10px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: #fffefa; }
+        .person-entry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; color: var(--muted); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
+        button { font-family: 'DM Sans', sans-serif; }
+        .remove-btn, .delete-btn { padding: 6px 10px; border: 0; border-radius: 8px; cursor: pointer; color: white; background: var(--terracotta); }
+        .add-btn { width: 100%; margin-top: 7px; padding: 11px; cursor: pointer; border: 1px dashed #bba98f; border-radius: 10px; color: #6e5d4e; background: transparent; font-weight: 700; }
+        .submit-btn { width: 100%; margin-top: 10px; padding: 17px 24px; border: 0; border-radius: 13px; cursor: pointer; color: white; background: var(--green); font-size: .91rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; box-shadow: 0 10px 22px rgba(40,79,64,.2); transition: .2s; }
+        .submit-btn:hover { transform: translateY(-2px); background: #1f4235; box-shadow: 0 13px 26px rgba(40,79,64,.25); }
+        .submit-btn:disabled { cursor: not-allowed; opacity: .5; transform: none; }
+        .fine-print { margin-top: 13px; color: #94867b; font-size: .73rem; text-align: center; }
+
+        .message { margin-bottom: 25px; padding: 17px; border-radius: 13px; text-align: center; font-size: .92rem; line-height: 1.55; }
+        .message.success { color: #17623e; background: #e5f5eb; border: 1px solid #a9d8ba; }
+        .message.info { color: #245070; background: #e9f4fa; border: 1px solid #b9d8e9; }
+        .message.warning { color: #77550a; background: #fff4cf; border: 1px solid #ecd47c; }
+        .message a { color: var(--terracotta); font-weight: 700; }
+        .admin-link { height: 1px; text-align: center; }
+        .admin-link a { color: transparent; text-decoration: none; user-select: none; }
+        .admin-link a:hover { color: rgba(0,0,0,.15); }
+
+        /* Administração */
+        .admin-container { display: none; background: var(--paper); }
+        .admin-container.show { display: block; }
+        .admin-container > h1 { margin-bottom: 25px; font: 700 2.5rem 'League Spartan', sans-serif; }
+        .login-form { max-width: 400px; margin: 0 auto; }
+        .logout-btn, .copy-btn { margin-bottom: 20px; padding: 10px 18px; border: 0; border-radius: 9px; cursor: pointer; color: white; background: var(--green); font-weight: 700; }
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 30px; }
+        .stat-card { padding: 20px; border: 1px solid var(--line); border-radius: 15px; text-align: center; background: white; }
+        .stat-number { color: var(--terracotta); font: 700 2.3rem 'League Spartan', sans-serif; }
+        .stat-label { color: var(--muted); font-size: .72rem; font-weight: 700; text-transform: uppercase; }
+        .age-filter { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .age-filter label { margin: 0; }
+        .age-filter select { width: auto; padding: 8px 12px; }
+        .table-section { margin-top: 25px; }
+        .table-section h2 { margin-bottom: 15px; font: 700 1.5rem 'League Spartan', sans-serif; }
+        table { width: 100%; margin: 10px 0 25px; border-collapse: collapse; background: white; font-size: .85rem; }
+        th, td { padding: 12px; border-bottom: 1px solid var(--line); text-align: left; }
+        th { color: white; background: var(--green); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+        .rsvp-list { margin-top: 25px; }
+        .rsvp-item { margin-bottom: 12px; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: white; }
+        .rsvp-item h3 { margin: 8px 0; }
+        .rsvp-item p { margin: 5px 0; color: var(--muted); font-size: .86rem; }
+        .rsvp-status { display: inline-block; padding: 5px 10px; border-radius: 99px; color: white; font-size: .67rem; font-weight: 800; text-transform: uppercase; }
+        .rsvp-status.confirmed { background: #2f7853; } .rsvp-status.declined { background: var(--terracotta); }
+        .loading { padding: 20px; color: var(--muted); text-align: center; }
+
+        @media (min-width: 769px) { .rsvp-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; } }
+        @media (max-width: 600px) {
+            body { padding: 0; background: var(--paper); }
+            .container { border: 0; border-radius: 0; box-shadow: none; }
+            .hero { min-height: 410px; padding: 30px 24px; }
+            .hero-copy { margin: 52px 0 36px; }
+            .hero h1 { font-size: 4.7rem; }
+            .hero::after { right: -15px; font-size: 210px; }
+            .content { padding: 34px 22px 40px; }
+            .info-grid { gap: 9px; }
+            .info-card { min-height: 122px; padding: 16px; }
+            .info-card.location { align-items: flex-start; }
+            .menu-card { padding: 22px; }
+            .menu-items { grid-template-columns: repeat(2, 1fr); }
+            .radio-group { grid-template-columns: 1fr; }
+            .phone-row { flex-direction: column; }
+            .phone-row select { width: 100% !important; }
+            .container.admin-wide { padding: 24px 18px; }
+            .stats { grid-template-columns: 1fr; }
+            .table-section { overflow-x: auto; }
+        }
+        @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+    </style>
+</head>
+<body>
+
+<!-- Página Pública -->
+<main class="container" id="publicContainer">
+    <header class="hero">
+        <div class="hero-top">
+            <div class="eyebrow">Convite especial</div>
+            <div class="beer-mark" aria-hidden="true">🍺</div>
+        </div>
+        <div class="hero-copy">
+            <p class="hero-kicker">Prepara o brinde porque o</p>
+            <h1>Felipe<br>faz <span>44.</span></h1>
+            <p class="hero-note">Uma tarde sem frescura, com cerveja gelada, comida de boteco e as melhores companhias.</p>
+        </div>
+        <div class="hero-pills" aria-label="Destaques da festa">
+            <span class="hero-pill">03 outubro</span>
+            <span class="hero-pill">a partir das 15h30</span>
+            <span class="hero-pill">sábado</span>
+        </div>
+    </header>
+
+    <div class="content">
+        <div id="statusMessage" aria-live="polite"></div>
+
+        <section aria-labelledby="detailsTitle">
+            <p class="section-label" id="detailsTitle">Anota aí</p>
+            <div class="info-grid">
+                <article class="info-card">
+                    <span class="info-icon" aria-hidden="true">◷</span>
+                    <small>Quando</small>
+                    <strong>3 de outubro</strong>
+                    <p>Sábado, às 15h30</p>
+                </article>
+                <article class="info-card">
+                    <span class="info-icon" aria-hidden="true">☀</span>
+                    <small>Até quando?</small>
+                    <strong>Sem hora</strong>
+                    <p>pra acabar</p>
+                </article>
+                <article class="info-card location">
+                    <span class="info-icon" aria-hidden="true">⌖</span>
+                    <div><small>Onde</small><strong>Boteco · 5414 av. Gatineau</strong><p>Chega junto e fica à vontade.</p></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="menu-card" aria-labelledby="menuTitle">
+            <div class="menu-head"><h2 id="menuTitle">O que vai ter</h2><span>menu da casa</span></div>
+            <div class="menu-items">
+                <div class="menu-item"><b>🍺</b><span>Cerveja</span></div>
+                <div class="menu-item"><b>🥟</b><span>Pastel</span></div>
+                <div class="menu-item"><b>🍗</b><span>Coxinha</span></div>
+                <div class="menu-item"><b>☺</b><span>Risadas</span></div>
+                <div class="menu-item"><b>♥</b><span>Amigos</span></div>
+                <div class="menu-item"><b>✦</b><span>Memórias</span></div>
+            </div>
+        </section>
+
+        <section class="form-section" aria-labelledby="rsvpTitle">
+            <div class="form-heading">
+                <p class="section-label">Reserva de mesa</p>
+                <h2 id="rsvpTitle">Você vem brindar comigo?</h2>
+                <p>Confirme sua presença e conte quem vem com você.</p>
+            </div>
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="name">Seu nome *</label>
+                    <input type="text" id="name" required autocomplete="name" placeholder="Nome completo">
+                </div>
+                <div class="form-group">
+                    <label>Você vai? *</label>
+                    <div class="radio-group">
+                        <div class="radio-option"><input type="radio" id="attendYes" name="attending" value="yes" required><label for="attendYes">Sim, estarei lá! 🍻</label></div>
+                        <div class="radio-option"><input type="radio" id="attendNo" name="attending" value="no" required><label for="attendNo">Não vou conseguir</label></div>
+                    </div>
+                </div>
+                <div id="conditionalFields" class="conditional-fields">
+                    <div class="form-group">
+                        <label for="phone">Telefone para contato *</label>
+                        <div class="phone-row" style="display:flex; gap:10px;">
+                            <select id="phoneCountry" aria-label="País" style="width:auto; min-width:175px; flex-shrink:0;"><option value="+1">🇨🇦 Canadá +1</option><option value="+55">🇧🇷 Brasil +55</option></select>
+                            <input type="tel" id="phone" autocomplete="tel" placeholder="(514) 000-0000" style="flex:1;" required>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Outros adultos/adolescentes (13+)?</label><div id="adultsContainer"></div><button type="button" class="add-btn" onclick="addAdult()">+ Adicionar adulto</button></div>
+                    <div class="form-group"><label>Crianças até 12 anos?</label><div id="childrenContainer"></div><button type="button" class="add-btn" onclick="addChild()">+ Adicionar criança</button></div>
+                </div>
+                <button type="submit" class="submit-btn">Confirmar presença →</button>
+                <p class="fine-print">Confirme até 27 de setembro. Vai ser bom demais ter você lá.</p>
+            </form>
+        </section>
+        <div class="admin-link"><a href="#admin" onclick="showAdmin(); return false;" aria-label="Área administrativa">.</a></div>
+    </div>
+</main>
+
+<!-- Admin -->
+<div class="container admin-container admin-wide" id="adminContainer">
+    <h1 style="font-family:'Special Elite',cursive; color:#2c1a0e; margin-bottom:25px;">🍺 Painel Admin</h1>
+
+    <div id="loginForm" class="login-form">
+        <div class="form-group">
+            <label for="adminPassword">Senha de acesso:</label>
+            <input type="password" id="adminPassword" placeholder="Digite a senha">
+        </div>
+        <button class="submit-btn" onclick="adminLogin()">Entrar</button>
+        <div class="admin-link" style="display:block; margin-top:20px;">
+            <a href="#" onclick="showPublic(); return false;" style="color:#8b5a2b !important; font-size:0.9em;">← Voltar para RSVP</a>
+        </div>
+    </div>
+
+    <div id="adminPanel" style="display:none;">
+        <button class="logout-btn" onclick="adminLogout()">Sair</button>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalConfirmed">0</div>
+                <div class="stat-label">Confirmados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalDeclined">0</div>
+                <div class="stat-label">Não virão</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalGuests">0</div>
+                <div class="stat-label">Total de Pessoas</div>
+            </div>
+        </div>
+
+        <div class="table-section">
+            <h2>📋 Lista de Presença</h2>
+
+            <div class="age-filter">
+                <label style="margin:0;">Idade mínima para contabilizar:</label>
+                <select id="minAge" onchange="renderTable()">
+                    <option value="0">Todas</option>
+                    <option value="1">1 ano+</option>
+                    <option value="2">2 anos+</option>
+                    <option value="3">3 anos+</option>
+                    <option value="4">4 anos+</option>
+                    <option value="5" selected>5 anos+</option>
+                    <option value="6">6 anos+</option>
+                </select>
+            </div>
+
+            <button class="copy-btn" onclick="copyToClipboard()">📋 Copiar para Excel</button>
+
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Responsável</th>
+                            <th>Telefone</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rsvpTableBody">
+                        <tr><td colspan="6" style="text-align:center;">Carregando...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="rsvp-list" id="rsvpList">
+            <div class="loading">Carregando confirmações...</div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+    const CONFIG = {
+        eventDate: '2026-10-03',
+        closeDate: '2026-09-27T23:59:00',
+        whatsappNumber: '15146599937',
+        adminPasswordHash: 'fe64888257b171ca96f1e41b1a09e1c948ac51d175f62414b6f230d9b817ce4c'
+    };
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCUT2lzMskGWm8AvvzsbNWOo4Sr_z77zF4",
+        authDomain: "magamelo-dbb39.firebaseapp.com",
+        projectId: "magamelo-dbb39",
+        storageBucket: "magamelo-dbb39.firebasestorage.app",
+        messagingSenderId: "524846619592",
+        appId: "1:524846619592:web:f4432e8427599219e2fefd"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let adultsCount = 0, childrenCount = 0, allRsvps = [];
+
+    function checkEventStatus() {
+        const now = new Date();
+        const eventDate = new Date(CONFIG.eventDate);
+        const closeDate = new Date(CONFIG.closeDate);
+
+        const statusDiv = document.getElementById('statusMessage');
+        const form = document.getElementById('rsvpForm');
+
+        if (now > eventDate) {
+            statusDiv.className = 'message info';
+            statusDiv.innerHTML = '🍺 A festa já aconteceu! Obrigado a todos que compareceram! Saúde!';
+            form.style.display = 'none';
+            return false;
+        } else if (now > closeDate) {
+            statusDiv.className = 'message warning';
+            statusDiv.innerHTML = `⏰ As confirmações estão encerradas.<br>Para mais informações, entre em contato pelo WhatsApp:<br><a href="https://wa.me/${CONFIG.whatsappNumber}">Clique aqui para contato</a>`;
+            form.style.display = 'none';
+            return false;
+        }
+        return true;
+    }
+
+    document.querySelectorAll('input[name="attending"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const fields = document.getElementById('conditionalFields');
+            const phone = document.getElementById('phone');
+            if (this.value === 'yes') { fields.classList.add('show'); phone.required = true; }
+            else { fields.classList.remove('show'); phone.required = false; }
+        });
+    });
+
+    window.addAdult = function() {
+        adultsCount++;
+        const div = document.createElement('div');
+        div.className = 'person-entry';
+        div.innerHTML = `
+            <div class="person-entry-header">
+                <strong>Adulto ${adultsCount}</strong>
+                <button type="button" class="remove-btn" onclick="this.parentElement.parentElement.remove()">Remover</button>
+            </div>
+            <input type="text" placeholder="Nome completo" class="adult-name" required>
+        `;
+        document.getElementById('adultsContainer').appendChild(div);
+    };
+
+    window.addChild = function() {
+        childrenCount++;
+        const div = document.createElement('div');
+        div.className = 'person-entry';
+        div.innerHTML = `
+            <div class="person-entry-header">
+                <strong>Criança ${childrenCount}</strong>
+                <button type="button" class="remove-btn" onclick="this.parentElement.parentElement.remove()">Remover</button>
+            </div>
+            <input type="text" placeholder="Nome completo" class="child-name" style="margin-bottom:10px;" required>
+            <input type="number" placeholder="Idade" class="child-age" min="0" max="12" required>
+        `;
+        document.getElementById('childrenContainer').appendChild(div);
+    };
+
+    document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!checkEventStatus()) return;
+
+        const submitBtn = this.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        const attending = document.querySelector('input[name="attending"]:checked').value === 'yes';
+        const data = { name: document.getElementById('name').value, attending, timestamp: new Date().toISOString() };
+
+        if (attending) {
+            const country = document.getElementById('phoneCountry').value;
+            data.phone = country + ' ' + document.getElementById('phone').value;
+            data.additionalAdults = Array.from(document.querySelectorAll('.adult-name')).map(i => i.value).filter(n => n.trim());
+            data.additionalChildren = Array.from(document.querySelectorAll('.person-entry'))
+                .filter(e => e.querySelector('.child-name'))
+                .map(e => ({ name: e.querySelector('.child-name').value, age: e.querySelector('.child-age').value }))
+                .filter(c => c.name.trim());
+        }
+
+        try {
+            await addDoc(collection(db, 'felipefaz44'), data);
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.className = 'message success';
+            statusDiv.innerHTML = attending
+                ? '🍺 Confirmação recebida! Te espero lá — vai ser incrível! 🥟🎉'
+                : '😢 Que pena que não poderá vir. Obrigado por avisar!';
+            this.reset();
+            document.getElementById('conditionalFields').classList.remove('show');
+            adultsCount = 0; childrenCount = 0;
+            document.getElementById('adultsContainer').innerHTML = '';
+            document.getElementById('childrenContainer').innerHTML = '';
+            this.style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+            alert('Erro ao enviar confirmação. Por favor, tente novamente.');
+            console.error(err);
+        }
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Confirmar presença →';
+    });
+
+    window.showAdmin = function() {
+        document.getElementById('publicContainer').style.display = 'none';
+        document.getElementById('adminContainer').classList.add('show');
+    };
+
+    window.showPublic = function() {
+        document.getElementById('publicContainer').style.display = 'block';
+        document.getElementById('adminContainer').classList.remove('show');
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('adminPanel').style.display = 'none';
+    };
+
+    window.adminLogin = async function() {
+        const password = document.getElementById('adminPassword').value;
+        const msgBuffer = new TextEncoder().encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        if (hashHex === CONFIG.adminPasswordHash) {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            loadRSVPs();
+        } else { alert('Senha incorreta!'); }
+    };
+
+    window.adminLogout = function() { showPublic(); document.getElementById('adminPassword').value = ''; };
+
+    async function loadRSVPs() {
+        const listDiv = document.getElementById('rsvpList');
+        const tableBody = document.getElementById('rsvpTableBody');
+        listDiv.innerHTML = '<div class="loading">Carregando...</div>';
+        tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Carregando...</td></tr>';
+
+        try {
+            const snap = await getDocs(query(collection(db, 'felipefaz44'), orderBy('timestamp', 'desc')));
+            allRsvps = [];
+            snap.forEach(d => allRsvps.push({ id: d.id, ...d.data() }));
+
+            if (allRsvps.length === 0) {
+                listDiv.innerHTML = '<div class="message info">Nenhuma confirmação ainda.</div>';
+                tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Nenhuma confirmação ainda.</td></tr>';
+                updateStats([], [], 0);
+                return;
+            }
+            renderTable();
+            renderCards(listDiv);
+        } catch (err) {
+            listDiv.innerHTML = '<div class="message warning">Erro ao carregar confirmações.</div>';
+            console.error(err);
+        }
+    }
+
+    window.renderTable = function() {
+        const minAge = parseInt(document.getElementById('minAge').value);
+        const tableBody = document.getElementById('rsvpTableBody');
+        tableBody.innerHTML = '';
+        let totalGuests = 0;
+
+        allRsvps.forEach(rsvp => {
+            if (!rsvp.attending) {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td><strong>${rsvp.name}</strong></td><td>-</td><td>-</td><td>-</td><td>❌ Não vai</td><td><button class="delete-btn" onclick="deleteRSVP('${rsvp.id}','${rsvp.name.replace(/'/g,"\\'")}')">🗑️</button></td>`;
+                tableBody.appendChild(row);
+                return;
+            }
+            const row = document.createElement('tr');
+            row.innerHTML = `<td><strong>${rsvp.name}</strong></td><td>-</td><td>-</td><td>${rsvp.phone||'-'}</td><td>✅ Vai</td><td><button class="delete-btn" onclick="deleteRSVP('${rsvp.id}','${rsvp.name.replace(/'/g,"\\'")}')">🗑️</button></td>`;
+            tableBody.appendChild(row);
+            totalGuests++;
+
+            (rsvp.additionalAdults||[]).forEach(adult => {
+                const r = document.createElement('tr');
+                r.innerHTML = `<td>${adult}</td><td>-</td><td>${rsvp.name}</td><td>-</td><td>✅ Vai</td><td>-</td>`;
+                tableBody.appendChild(r);
+                totalGuests++;
+            });
+
+            (rsvp.additionalChildren||[]).forEach(child => {
+                const age = parseInt(child.age);
+                const counts = age >= minAge;
+                const r = document.createElement('tr');
+                r.style.opacity = counts ? '1' : '0.5';
+                r.innerHTML = `<td>${child.name}${!counts?' <small style="color:#aaa">(não contabilizado)</small>':''}</td><td>${child.age} anos</td><td>${rsvp.name}</td><td>-</td><td>✅ Vai</td><td>-</td>`;
+                tableBody.appendChild(r);
+                if (counts) totalGuests++;
+            });
+        });
+
+        updateStats(allRsvps.filter(r=>r.attending), allRsvps.filter(r=>!r.attending), totalGuests);
+    };
+
+    function renderCards(listDiv) {
+        listDiv.innerHTML = '';
+        const confirmed = allRsvps.filter(r => r.attending);
+        const declined = allRsvps.filter(r => !r.attending);
+
+        if (confirmed.length > 0) {
+            const s = document.createElement('div');
+            s.innerHTML = '<h2 style="color:#2c1a0e; margin-bottom:15px; font-family:Special Elite,cursive;">✅ Confirmados</h2>';
+            confirmed.forEach(r => s.appendChild(createCard(r, true)));
+            listDiv.appendChild(s);
+        }
+        if (declined.length > 0) {
+            const s = document.createElement('div');
+            s.innerHTML = '<h2 style="color:#2c1a0e; margin:30px 0 15px; font-family:Special Elite,cursive;">❌ Não virão</h2>';
+            declined.forEach(r => s.appendChild(createCard(r, false)));
+            listDiv.appendChild(s);
+        }
+    }
+
+    window.copyToClipboard = function() {
+        const minAge = parseInt(document.getElementById('minAge').value);
+        let tsv = 'Nome\tIdade\tResponsável\tTelefone\tStatus\n';
+        allRsvps.forEach(rsvp => {
+            if (!rsvp.attending) { tsv += `${rsvp.name}\t-\t-\t-\tNão vai\n`; return; }
+            tsv += `${rsvp.name}\t-\t-\t${rsvp.phone||'-'}\tVai\n`;
+            (rsvp.additionalAdults||[]).forEach(a => { tsv += `${a}\t-\t${rsvp.name}\t-\tVai\n`; });
+            (rsvp.additionalChildren||[]).forEach(c => {
+                const counts = parseInt(c.age) >= minAge;
+                tsv += `${c.name}\t${c.age} anos\t${rsvp.name}\t-\t${counts?'Vai':'Vai (não contabilizado)'}\n`;
+            });
+        });
+        navigator.clipboard.writeText(tsv).then(() => alert('✅ Dados copiados! Cole no Excel com Ctrl+V'));
+    };
+
+    window.deleteRSVP = async function(rsvpId, name) {
+        if (!confirm(`Tem certeza que deseja excluir a confirmação de "${name}"?\n\nEsta ação não pode ser desfeita.`)) return;
+        try {
+            await deleteDoc(doc(db, 'felipefaz44', rsvpId));
+            alert('Confirmação excluída com sucesso!');
+            loadRSVPs();
+        } catch (err) { alert('Erro ao excluir. Tente novamente.'); console.error(err); }
+    };
+
+    function createCard(rsvp, attending) {
+        const div = document.createElement('div');
+        div.className = 'rsvp-item';
+        let html = `<span class="rsvp-status ${attending?'confirmed':'declined'}">${attending?'✅ Confirmado':'❌ Não virá'}</span><h3>${rsvp.name}</h3><p><strong>Data:</strong> ${new Date(rsvp.timestamp).toLocaleString('pt-BR')}</p>`;
+        if (attending) {
+            html += `<p><strong>Telefone:</strong> ${rsvp.phone}</p>`;
+            let total = 1;
+            if (rsvp.additionalAdults?.length) { total += rsvp.additionalAdults.length; html += `<p><strong>Adultos (${rsvp.additionalAdults.length}):</strong> ${rsvp.additionalAdults.join(', ')}</p>`; }
+            if (rsvp.additionalChildren?.length) { total += rsvp.additionalChildren.length; html += `<p><strong>Crianças (${rsvp.additionalChildren.length}):</strong> ${rsvp.additionalChildren.map(c=>`${c.name} (${c.age} anos)`).join(', ')}</p>`; }
+            html += `<p><strong>Total:</strong> ${total} pessoa(s)</p>`;
+        }
+        div.innerHTML = html;
+        return div;
+    }
+
+    function updateStats(confirmed, declined, totalGuests) {
+        document.getElementById('totalConfirmed').textContent = confirmed.length;
+        document.getElementById('totalDeclined').textContent = declined.length;
+        document.getElementById('totalGuests').textContent = totalGuests;
+    }
+
+    checkEventStatus();
+    if (window.location.hash === '#admin') showAdmin();
+</script>
+</body>
+</html>
