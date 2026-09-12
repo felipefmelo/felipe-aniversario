@@ -47,12 +47,13 @@
         .intro h2 em { color:var(--orange); font-style:normal; }
         .intro-text { max-width:580px; margin:24px 0 40px; color:var(--muted); font-size:1rem; line-height:1.8; }
         .event-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; overflow:hidden; margin-bottom:56px; border:1px solid var(--line); border-radius:22px; background:var(--line); }
-        .event-card { padding:25px; background:var(--paper); }
-        .event-card.wide { grid-column:1/-1; display:flex; align-items:center; gap:20px; }
-        .event-icon { width:44px; height:44px; display:grid; place-items:center; border-radius:50%; color:var(--night); background:var(--lime); font-size:1.1rem; }
-        .event-card small { display:block; margin:15px 0 5px; color:#949a92; font:700 .65rem 'DM Sans'; letter-spacing:.14em; text-transform:uppercase; }
-        .event-card.wide small { margin-top:0; }
-        .event-card strong { font:600 1.3rem 'Oswald'; text-transform:uppercase; }
+        .event-card { min-height:145px; padding:25px; display:flex; align-items:center; gap:18px; background:var(--paper); }
+        .event-card.wide { grid-column:1/-1; min-height:128px; }
+        .event-copy { min-width:0; }
+        .event-icon { width:46px; height:46px; display:grid; place-items:center; flex:0 0 46px; border-radius:14px; color:var(--night); background:var(--lime); }
+        .event-icon svg { width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+        .event-card small { display:block; margin:0 0 5px; color:#949a92; font:700 .65rem 'DM Sans'; letter-spacing:.14em; text-transform:uppercase; }
+                .event-card strong { font:600 1.3rem 'Oswald'; text-transform:uppercase; }
         .event-card p { margin-top:4px; color:var(--muted); font-size:.78rem; }
         .menu-band { position:relative; margin:0 0 62px; padding:34px; overflow:hidden; border-radius:24px; color:var(--cream); background:var(--orange); }
         .menu-band::after { content:'44'; position:absolute; right:-8px; bottom:-50px; color:rgba(255,255,255,.09); font:700 10rem 'Oswald'; }
@@ -61,7 +62,9 @@
         .menu-title span { font-size:.7rem; opacity:.75; letter-spacing:.1em; text-transform:uppercase; }
         .menu-list { position:relative; z-index:1; display:grid; grid-template-columns:repeat(2,1fr); gap:0 28px; margin-top:16px; }
         .menu-row { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px dashed rgba(255,255,255,.22); font-size:.82rem; }
-        .menu-row b { font-weight:600; } .menu-row span { opacity:.75; }
+        .menu-row b { font-weight:600; }
+        .menu-icon { width:30px; height:30px; display:grid; place-items:center; flex:0 0 30px; margin:-6px 0; border-radius:9px; color:var(--cream); background:rgba(255,255,255,.12); }
+        .menu-icon svg { width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 
         .form-head { margin-bottom:30px; }
         .form-head h2 { font:600 clamp(2.1rem,4vw,3.5rem)/1.05 'Oswald'; letter-spacing:-.025em; text-transform:uppercase; }
@@ -120,11 +123,11 @@
         <div id="statusMessage" aria-live="polite"></div>
         <div class="intro"><p class="section-tag">Convite aberto</p><h2>Sem cerimônia.<br><em>Só chega junto.</em></h2><p class="intro-text">Vou comemorar meus 44 do jeito certo: mesa cheia, conversa boa e zero pressa para ir embora. Sua presença é o melhor presente.</p></div>
         <div class="event-grid">
-          <article class="event-card"><div class="event-icon">◷</div><small>Quando</small><strong>Sábado, 3 de outubro</strong><p>A partir das 15h30</p></article>
-          <article class="event-card"><div class="event-icon">∞</div><small>Duração</small><strong>Sem hora pra acabar</strong><p>Domingo a gente resolve</p></article>
-          <article class="event-card wide"><div class="event-icon">⌖</div><div><small>Nosso balcão</small><strong>5414 av. Gatineau</strong><p>Boteco · chega e puxa uma cadeira</p></div></article>
+          <article class="event-card"><div class="event-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l3.5 2"/></svg></div><div class="event-copy"><small>Quando</small><strong>Sábado, 3 de outubro</strong><p>A partir das 15h30</p></div></article>
+          <article class="event-card"><div class="event-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.4 8.5c-2.1 0-3.9 1.5-3.9 3.5s1.8 3.5 3.9 3.5c3.6 0 4.1-7 7.2-7 2.1 0 3.9 1.5 3.9 3.5s-1.8 3.5-3.9 3.5c-3.1 0-3.6-4.5-5.7-6.3"/></svg></div><div class="event-copy"><small>Duração</small><strong>Sem hora pra acabar</strong><p>Domingo a gente resolve</p></div></article>
+          <article class="event-card wide"><div class="event-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div class="event-copy"><small>Nosso balcão</small><strong>5414 av. Gatineau</strong><p>Boteco · chega e puxa uma cadeira</p></div></article>
         </div>
-        <section class="menu-band" aria-labelledby="menuTitle"><div class="menu-title"><h3 id="menuTitle">Menu da felicidade</h3></div><div class="menu-list"><div class="menu-row"><b>Cerveja gelada</b><span>🍺</span></div><div class="menu-row"><b>Pastel crocante</b><span>🥟</span></div><div class="menu-row"><b>Coxinha</b><span>✦</span></div><div class="menu-row"><b>Amigos & risadas</b><span>♥</span></div></div></section>
+        <section class="menu-band" aria-labelledby="menuTitle"><div class="menu-title"><h3 id="menuTitle">Menu da felicidade</h3></div><div class="menu-list"><div class="menu-row"><b>Cerveja gelada</b><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 8h11v12H7a2 2 0 0 1-2-2Z"/><path d="M16 11h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2M7 8V6a2 2 0 0 1 4 0v2m0 0V5.5a2 2 0 0 1 4 0V8"/></svg></span></div><div class="menu-row"><b>Pastel crocante</b><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 7 2-2 2 1 2-1 2 1 2-1 2 1 2-1v12l-2 2-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="m9 10 6 4m0-4-6 4"/></svg></span></div><div class="menu-row"><b>Coxinha</b><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3c0 4-6 6.7-6 12a6 6 0 0 0 12 0c0-5.3-6-8-6-12Z"/><path d="M9.5 16.5c.7.8 1.5 1.1 2.5 1.1"/></svg></span></div><div class="menu-row"><b>Amigos & risadas</b><span class="menu-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.4-3.3 2.2-5 5.5-5s5.1 1.7 5.5 5M16 6.5a3 3 0 0 1 0 5.8M16 14c2.7.2 4.1 1.9 4.5 5"/></svg></span></div></div></section>
         <section class="form-section" aria-labelledby="rsvpTitle">
           <div class="form-head"><p class="section-tag">Confirmação</p><h2 id="rsvpTitle">Guardo um lugar<br>pra você?</h2><p>Responda até 27 de setembro e conte quem vem junto.</p></div>
           <form id="rsvpForm">
