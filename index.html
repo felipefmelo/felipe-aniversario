@@ -464,7 +464,8 @@
         .rsvp-status.confirmed { background: #27ae60; color: white; }
         .rsvp-status.declined { background: #c0392b; color: white; }
 
-        .logout-btn {
+        .logout-btn,
+        .refresh-btn {
             background: #5d4037;
             color: white;
             border: none;
@@ -477,6 +478,9 @@
         }
 
         .logout-btn:hover { background: #4e342e; }
+        .refresh-btn { margin-left: 8px; background: #8b5a2b; }
+        .refresh-btn:hover { background: #7a4f26; }
+        .refresh-btn:disabled { opacity: .6; cursor: wait; }
 
         .stats {
             display: grid;
@@ -717,6 +721,7 @@
 
     <div id="adminPanel" style="display:none;">
         <button class="logout-btn" onclick="adminLogout()">Sair</button>
+        <button class="refresh-btn" onclick="refreshRSVPs(this)">↻ Atualizar dados</button>
 
         <div class="stats">
             <div class="stat-card">
@@ -930,6 +935,17 @@
     };
 
     window.adminLogout = function() { showPublic(); document.getElementById('adminPassword').value = ''; };
+
+    window.refreshRSVPs = async function(button) {
+        button.disabled = true;
+        button.textContent = '↻ Atualizando...';
+        try {
+            await loadRSVPs();
+        } finally {
+            button.disabled = false;
+            button.textContent = '↻ Atualizar dados';
+        }
+    };
 
     async function loadRSVPs() {
         const listDiv = document.getElementById('rsvpList');
